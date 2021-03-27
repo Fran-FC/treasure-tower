@@ -4,7 +4,7 @@
  
 ## Developers:
  
-   - [Francesc Folch] (https://github.com/Fran-FC)
+   - [Francesc Folch](https://github.com/Fran-FC)
    - [Javier Carmona] (https://github.com/antonovtum)
    - [Carlos Cobas] (https://github.com/CarlosCobas)
    - [Andres Roca] (https://github.com/majezt1c)
