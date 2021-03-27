@@ -1,6 +1,8 @@
-# treasure tower
+# Treasure Tower
 
- Treasure tower project game... A 2D turn based puzzle game!
+ Treasure tower is a 2D turn based puzzle game!
+ 
+ Currently in development...
  
 ## Developers:
  
@@ -8,3 +10,4 @@
    - [Javier Carmona](https://github.com/antonovtum)
    - [Carlos Cobas](https://github.com/CarlosCobas)
    - [Andres Roca](https://github.com/majezt1c)
+
