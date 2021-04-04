@@ -15,8 +15,7 @@ public class MovementGrid : MonoBehaviour
 
     enum CharStates {
         idle = 0,
-        walkEast = 1,
-        walkWest = 2
+        walk = 1
     }
 
     CharStates prevState;
@@ -27,7 +26,7 @@ public class MovementGrid : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        prevState = CharStates.walkEast;
+        prevState = CharStates.walk;
     }
 
     private void FixedUpdate() {
@@ -50,7 +49,7 @@ public class MovementGrid : MonoBehaviour
                 movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                 if (movement.x  > 0f)
                 {
-                    prevState = CharStates.walkEast;
+                    prevState = CharStates.walk;
                     if(orientation < 0f){
                         orientation = 1f;
                         flip = false;
@@ -58,7 +57,7 @@ public class MovementGrid : MonoBehaviour
                 }
                 else
                 {
-                    prevState = CharStates.walkWest;
+                    prevState = CharStates.walk;
                     if(orientation > 0f){
                         orientation = -1f;
                         flip = true;
@@ -67,6 +66,7 @@ public class MovementGrid : MonoBehaviour
             } else if ( Mathf.Abs(movement.y) == 1f)
             {
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                prevState = CharStates.walk;
             } else {
                 prevState = CharStates.idle;
             }

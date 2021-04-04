@@ -265,7 +265,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_86
   - first:
       213: 9132161246802974573
-    second: 0x72_16x16DungeonTileset.v4_87
+    second: sword_black
   - first:
       213: -236116857729605494
     second: 0x72_16x16DungeonTileset.v4_88
@@ -316,7 +316,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_103
   - first:
       213: 3636231619382133255
-    second: 0x72_16x16DungeonTileset.v4_104
+    second: knife_1
   - first:
       213: -2448475857619190478
     second: 0x72_16x16DungeonTileset.v4_105
@@ -740,6 +740,9 @@ TextureImporter:
   - first:
       213: -1254183602032391468
     second: 0x72_16x16DungeonTileset.v4_245
+  - first:
+      213: -8721964507169126584
+    second: sword_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2316,27 +2319,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_71
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78b092b87aab16be0800000000000000
-      internalID: -1485701173298525305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: 0x72_16x16DungeonTileset.v4_72
       rect:
         serializedVersion: 2
@@ -2652,13 +2634,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_87
+      name: sword_black
       rect:
         serializedVersion: 2
         x: 112
         y: 160
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3009,12 +2991,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_104
+      name: knife_1
       rect:
         serializedVersion: 2
         x: 128
         y: 144
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -5965,6 +5947,27 @@ TextureImporter:
       bones: []
       spriteID: 4da4dbda8ae389ee0800000000000000
       internalID: -1254183602032391468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 144
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8478e9edd7b55f680800000000000000
+      internalID: -8721964507169126584
       vertices: []
       indices: 
       edges: []
