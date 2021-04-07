@@ -16,15 +16,17 @@ public class MapGenTest : MonoBehaviour
     //room struct
     struct Room
     {
-        public bool[] conection { get; set; } //clockwise from the top ({UP, RIGHT, DOWN, LEFT})
+        public bool[] mainConections { get; set; } //clockwise from the top ({UP, RIGHT, DOWN, LEFT})
+        public bool[] secondaryConections { get; set; } //clockwise from the top ({UP, RIGHT, DOWN, LEFT})
         public (int, int) position { get; set; }
         public string tag { get; set; }
 
         //ONLY USE THIS FOR "START" AND "END" ROOMS - ONLY 1 CONECTION  -   MAYBE FOR PATH WORKS TOO, TOTALLY PLANED
         public Room(int conectionIndex, int h, int w, string t)
         {
-            conection = new bool[4] { false, false, false, false};
-            conection[conectionIndex] = true;
+            mainConections = new bool[4] { false, false, false, false};
+            secondaryConections = new bool[4] { false, false, false, false};
+            mainConections[conectionIndex] = true;
             position = (h, w);
             tag = t; 
         }
@@ -35,6 +37,8 @@ public class MapGenTest : MonoBehaviour
     public int height, width;
     [Range(3, 20)]
     public int roomsOnMainPath;
+    [Range(3, 20)]
+    public int roomsOnSecondaryPath;
     //[Range(0, 100)]
     //public int switchWeight;    //how strong is the desire to change direction
     //[Range(0, 100)]
@@ -55,6 +59,7 @@ public class MapGenTest : MonoBehaviour
     {
         setup();
         findMainPath();
+        placeSecondaryRooms();
     }
 
     private void setup()
@@ -75,7 +80,7 @@ public class MapGenTest : MonoBehaviour
         //select random room to be the starting room
         Room startingRoom = setupStartingRoom();
         //start exploring main path
-        bool success = buildPath(startingRoom, Array.IndexOf(startingRoom.conection, true));
+        bool success = buildPath(startingRoom, Array.IndexOf(startingRoom.mainConections, true));
         if (success) addRoomToMap(startingRoom);
         //if path is successful place it on map, if not then what the fuck did you do, like honestly how do you fuck it up that bad???
     }
@@ -196,7 +201,7 @@ public class MapGenTest : MonoBehaviour
             if (result)
             {
                 //we've found a path!
-                newRoom.conection[shuffledOptions[i]] = true;
+                newRoom.mainConections[shuffledOptions[i]] = true;
                 addRoomToMap(newRoom);
                 return true;
             }
@@ -237,6 +242,102 @@ public class MapGenTest : MonoBehaviour
         return res;
     }
 
+    private void placeSecondaryRooms()
+    {
+        /*
+         so here's the plan, 
+        for each room to place we search the map for empty neighboring rooms, 
+        put them all in a list and select a random one to place the room, 
+        and put the conections accordingly of course 
+         */
+        for(int i = 0; i<roomsOnSecondaryPath; i++)
+        {
+            List<(int, int)> potentialCoords = new List<(int, int)>();
+            for(int h = 0; h < height; h++)
+            {
+                for(int w = 0; w < width; w++)
+                {
+                    if (map[h, w].tag != null) continue; //if this room is already allocated we move on
+                    else
+                    {
+                        //this room is empty
+                        if (isNeighborToRoom(h, w)) potentialCoords.Add((h, w));
+                    }                    
+                }
+            }
+            //we have a list of all empty rooms next to allocated ones, choose a random one to place a room
+            if (potentialCoords.Count <= 0) return; //if the list comes back empty we've filled the entire map, no point on keep on ttying
+            (int randH, int randW) = potentialCoords[rng.Next(potentialCoords.Count)];
+            placeSecRoomAt(randH, randW);
+        }
+    }
+
+    private void placeSecRoomAt(int h, int w)
+    {
+        Room room = new Room();
+        room.position = (h, w);
+        room.tag = "OPTIONAL";
+        room.mainConections = new bool[4] { false, false, false, false};
+        room.secondaryConections = new bool[4] { false, false, false, false};
+        //now check all neigbours
+        for(int dir = 0; dir < 4; dir++)
+        {
+            if(isNeighborAt(h, w, dir))
+            {
+                //for each neighbor place an optional conection for me and the neighboring room
+                room.secondaryConections[dir] = true;
+                switch (dir)
+                {
+                    case UP:
+                        map[h + 1, w].secondaryConections[DOWN] = true;
+                        break;
+                    case RIGHT:
+                        map[h, w + 1].secondaryConections[LEFT] = true;
+                        break;
+                    case DOWN:
+                        map[h - 1, w].secondaryConections[UP] = true;
+                        break;
+                    case LEFT:
+                        map[h, w - 1].secondaryConections[RIGHT] = true;
+                        break;
+                }
+            }
+        }
+        map[h, w] = room;
+
+    }
+
+    private bool isNeighborToRoom(int h, int w)
+    {
+        if(isNeighborAt(h, w, UP)) return true; //UP
+        if(isNeighborAt(h, w, RIGHT)) return true; //RIGHT
+        if(isNeighborAt(h, w, DOWN)) return true; //DOWN
+        if(isNeighborAt(h, w, LEFT)) return true; //LEFT
+        return false;
+    }
+
+    private bool isNeighborAt(int h, int w, int dir)
+    {
+        switch (dir)
+        {
+            case UP:
+                return h + 1 < height && (map[h + 1, w].tag == "MAIN PATH" || map[h + 1, w].tag == "OPTIONAL");
+                break;
+            case RIGHT:
+                return w + 1 < width  && (map[h, w + 1].tag == "MAIN PATH" || map[h, w + 1].tag == "OPTIONAL");
+                break;
+            case DOWN:
+                return h - 1 >= 0     && (map[h - 1, w].tag == "MAIN PATH" || map[h - 1, w].tag == "OPTIONAL");
+                break;
+            case LEFT:
+                return w - 1 >= 0     && (map[h, w - 1].tag == "MAIN PATH" || map[h, w - 1].tag == "OPTIONAL");
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (map != null)
@@ -262,11 +363,14 @@ public class MapGenTest : MonoBehaviour
                             case "END":
                                 Gizmos.color = Color.red;
                                 break;
+                            case "OPTIONAL":
+                                Gizmos.color = Color.yellow;
+                                break;
                         }
                         for (int dir = 0; dir < 4; dir++)
                         {
                             //for each cardinal direction, see if the room has a conection
-                            if (map[i, j].conection[dir]) Gizmos.DrawLine(pos, pos + directions[dir]);
+                            if (map[i, j].mainConections[dir] || map[i, j].secondaryConections[dir]) Gizmos.DrawLine(pos, pos + directions[dir]);
                         }
                     }
                     else

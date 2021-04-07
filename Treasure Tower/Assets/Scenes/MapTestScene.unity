@@ -150,12 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838fe7c24fd1e274f943451d1b1f5670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 7
-  width: 7
+  height: 6
+  width: 4
   roomsOnMainPath: 10
-  switchWeight: 0
-  distanceWeight: 0
-  seed: wadrfhhjyj
+  roomsOnSecondaryPath: 5
+  seed: boobs
   randomSeed: 1
 --- !u!4 &90238747
 Transform:
