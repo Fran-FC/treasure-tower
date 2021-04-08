@@ -55,10 +55,16 @@ public class MovementGrid : MonoBehaviour
                         flip = true;
                     }
                 }
+
+                // if we moved, send event for moving
+                Messenger.Broadcast(GameEvent.MOVED);
             } else if ( Mathf.Abs(movement.y) == 1f)
             {
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                 prevState = CharStates.walk;
+
+                // if we moved, send event for moving
+                Messenger.Broadcast(GameEvent.MOVED);
             } else {
                 prevState = CharStates.idle;
             }

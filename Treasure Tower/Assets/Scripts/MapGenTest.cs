@@ -322,19 +322,14 @@ public class MapGenTest : MonoBehaviour
         {
             case UP:
                 return h + 1 < height && (map[h + 1, w].tag == "MAIN PATH" || map[h + 1, w].tag == "OPTIONAL");
-                break;
             case RIGHT:
                 return w + 1 < width  && (map[h, w + 1].tag == "MAIN PATH" || map[h, w + 1].tag == "OPTIONAL");
-                break;
             case DOWN:
                 return h - 1 >= 0     && (map[h - 1, w].tag == "MAIN PATH" || map[h - 1, w].tag == "OPTIONAL");
-                break;
             case LEFT:
                 return w - 1 >= 0     && (map[h, w - 1].tag == "MAIN PATH" || map[h, w - 1].tag == "OPTIONAL");
-                break;
             default:
                 return false;
-                break;
         }
     }
 
