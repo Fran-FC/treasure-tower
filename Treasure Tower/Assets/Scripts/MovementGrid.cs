@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,18 +6,12 @@ public class MovementGrid : MonoBehaviour
 {
     public Transform movePoint;
     public float moveSpeed = 5.0f;
-
     Vector2 movement;
     Animator animator;
     SpriteRenderer spriteRenderer;
     float orientation = 1f;
     bool flip = false;
-
-    enum CharStates {
-        idle = 0,
-        walk = 1
-    }
-
+    enum CharStates { idle = 0, walk = 1 }
     CharStates prevState;
 
     void Start()
@@ -25,14 +19,12 @@ public class MovementGrid : MonoBehaviour
         movePoint.parent = null;        
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         prevState = CharStates.walk;
     }
 
     private void FixedUpdate() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
         movement = Vector2.ClampMagnitude(movement, 1.0f);
     }
 
