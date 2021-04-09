@@ -11,14 +11,14 @@ public class ObjectController : MonoBehaviour
         // when we reach rotation point, capture key events and update rotation dest
         if (Mathf.Abs(diff) <= 4f)
         {
-            if(Input.GetKey(KeyCode.Q))
+            if(Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse0))
             {
                 rotationOrientation = 1f;
                 rotationDest = (360 + rotationDest + 90f) % 360f;
 
                 // if we moved, send event for moving
                 Messenger.Broadcast(GameEvent.MOVED);
-            } else if(Input.GetKey(KeyCode.E)) 
+            } else if(Input.GetKey(KeyCode.E)|| Input.GetKey(KeyCode.Mouse1) )
             {
                 rotationOrientation = -1f;
                 rotationDest = (360 + rotationDest - 90f) % 360f;

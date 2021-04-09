@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementGrid : MonoBehaviour
+public class Player : MonoBehaviour
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
-    //BoxCollider2D collider2D;
 
     // Variables for movement
     Vector2 movement;
@@ -27,18 +26,16 @@ public class MovementGrid : MonoBehaviour
     }
     CharLifeStates lifeState;
 
-    private void Awake() {
-        lifes = 3f;
-    }
     void Start()
     {
         movePoint.parent = null;        
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //collider2D = GetComponent<BoxCollider2D>();
         prevWalkState = CharWalkStates.walk;
     }
-
+    private void Awake() {
+        lifes = 3f;
+    }
     private void FixedUpdate() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -47,32 +44,8 @@ public class MovementGrid : MonoBehaviour
 
     void Update()
     {
+        // grid movement logic
         CalcMovement();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("COLISION");
-        if(other.gameObject.CompareTag("Enemy"))
-        {
-            lifes--;
-            switch (lifes)
-            {
-                case 3:
-                    lifeState = CharLifeStates.full;
-                    break;
-                case 2:
-                    lifeState = CharLifeStates.half;
-                    break;
-                case 1:
-                    lifeState = CharLifeStates.nacked;
-                    break;
-                default:
-                    lifeState = CharLifeStates.dead;
-                    transform.gameObject.SetActive(false);
-                    break;
-            }
-        }
-        animator.SetInteger("HealthState", (int)lifeState);
     }
     void CalcMovement(){
         CharWalkStates state = prevWalkState;
@@ -116,5 +89,36 @@ public class MovementGrid : MonoBehaviour
         } 
         animator.SetInteger("WalkState", (int)state);
         spriteRenderer.flipX = flip;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        // logic for recieving damage or recoverying health
+        if(other.gameObject.CompareTag("Enemy"))
+            lifes--;
+        else if(other.gameObject.CompareTag("Armor"))
+            lifes++;
+        
+        // MAX LIFES = 3
+        if(lifes > 3)
+            lifes = 3;
+
+        switch (lifes)
+        {
+            case 3:
+                lifeState = CharLifeStates.full;
+                break;
+            case 2:
+                lifeState = CharLifeStates.half;
+                break;
+            case 1:
+                lifeState = CharLifeStates.nacked;
+                break;
+            default:
+                lifeState = CharLifeStates.dead;
+                transform.gameObject.SetActive(false);
+                break;
+        }
+        // update sprite and animations
+        animator.SetInteger("HealthState", (int)lifeState);
     }
 }
