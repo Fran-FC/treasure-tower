@@ -68,6 +68,33 @@ TextureImporter:
   - first:
       213: 8597662944767996774
     second: player_nacked_21
+  - first:
+      213: 2927360678401253042
+    second: player_nacked_0
+  - first:
+      213: 1508993990007902886
+    second: player_nacked_1
+  - first:
+      213: -3584671334505692899
+    second: player_nacked_2
+  - first:
+      213: 6046991741898789495
+    second: player_nacked_3
+  - first:
+      213: 909536345803121310
+    second: player_nacked_4
+  - first:
+      213: 4324023919576371406
+    second: player_nacked_5
+  - first:
+      213: 9169567080395932395
+    second: player_nacked_6
+  - first:
+      213: -8603245583870806403
+    second: player_nacked_7
+  - first:
+      213: -2904034310418543661
+    second: player_nacked_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -156,187 +183,187 @@ TextureImporter:
       name: player_nacked_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 4
         y: 57
-        width: 10
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b977b1c332a2a6820800000000000000
-      internalID: 2912186439869101979
+      spriteID: 2be9d85f60310a820800000000000000
+      internalID: 2927360678401253042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_idle_1
+      name: player_nacked_1
       rect:
         serializedVersion: 2
-        x: 7
+        x: 4
         y: 29
-        width: 10
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd82b4c4070b15050800000000000000
-      internalID: 5787600992510617820
+      spriteID: 6a2de96f90601f410800000000000000
+      internalID: 1508993990007902886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_idle_2
+      name: player_nacked_2
       rect:
         serializedVersion: 2
-        x: 31
+        x: 28
         y: 29
-        width: 10
-        height: 14
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa4ecb59f57ad3bc0800000000000000
-      internalID: -3801698481454914390
+      spriteID: d114346e960b04ec0800000000000000
+      internalID: -3584671334505692899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_idle_3
+      name: player_nacked_3
       rect:
         serializedVersion: 2
-        x: 55
+        x: 52
         y: 29
-        width: 10
-        height: 13
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61d336590c8753120800000000000000
-      internalID: 2392951545552649494
+      spriteID: 772199f63fa3be350800000000000000
+      internalID: 6046991741898789495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_idle_4
+      name: player_nacked_4
       rect:
         serializedVersion: 2
-        x: 79
+        x: 76
         y: 29
-        width: 10
-        height: 14
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d8abcd6b54e1af30800000000000000
-      internalID: 4585196976975096021
+      spriteID: e92e6e1dc725f9c00800000000000000
+      internalID: 909536345803121310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_walk_1
+      name: player_nacked_5
       rect:
         serializedVersion: 2
-        x: 6
+        x: 4
         y: 2
-        width: 11
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 217b42122bd427d20800000000000000
-      internalID: 3274765306507343634
+      spriteID: ec054ae58d4020c30800000000000000
+      internalID: 4324023919576371406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_walk_2
+      name: player_nacked_6
       rect:
         serializedVersion: 2
-        x: 29
+        x: 28
         y: 3
-        width: 13
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f396603b1b476c970800000000000000
-      internalID: 8774829230539565375
+      spriteID: be28d1b5da8d04f70800000000000000
+      internalID: 9169567080395932395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_walk_3
+      name: player_nacked_7
       rect:
         serializedVersion: 2
-        x: 53
+        x: 52
         y: 1
-        width: 12
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10c2a3c17f3d936b0800000000000000
-      internalID: -5315984826850202623
+      spriteID: d76bee139b12b9880800000000000000
+      internalID: -8603245583870806403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_nacked_walk_4
+      name: player_nacked_8
       rect:
         serializedVersion: 2
-        x: 79
+        x: 76
         y: 1
-        width: 10
-        height: 14
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 268880a898f8d50e0800000000000000
-      internalID: -2279508015490496414
+      spriteID: 3dbc4ff4e2cc2b7d0800000000000000
+      internalID: -2904034310418543661
       vertices: []
       indices: 
       edges: []
