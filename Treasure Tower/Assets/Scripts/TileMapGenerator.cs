@@ -24,20 +24,21 @@ public class TileMapGenerator : MonoBehaviour
 
     private MapInfo mapInfo;
 
+    private Tilemap tilemap;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         Grid grid = new GameObject("Grid").AddComponent<Grid>();
-        Tilemap tilemap = new GameObject("Tilemap").AddComponent<Tilemap>();
+        tilemap = new GameObject("Tilemap").AddComponent<Tilemap>();
         tilemap.gameObject.AddComponent<TilemapRenderer>();
 
         tilemap.transform.SetParent(grid.transform);
 
 
         tilemap.transform.position = new Vector2(-rows / 2, -cols / 2);
-
 
         mapInfo = new MapInfo(rows, cols);
 
@@ -50,14 +51,18 @@ public class TileMapGenerator : MonoBehaviour
         Vector3Int tilemapPos = tilemap.WorldToCell(worldPos);
         Vector3 center = tilemap.GetCellCenterWorld(tilemapPos);
 
-
         Instantiate(player, center, Quaternion.identity);
     }
 
 
 
-    public bool isTileWalkable(int x, int y) {
-        return mapInfo.isTileWalkable(x, y);
+    public bool isTileWalkable(float v_x, float v_y) {
+
+        int x = (int) Mathf.Floor(v_x);
+        int y = (int) Mathf.Floor(v_y);
+
+        Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x,y,0));
+        return mapInfo.isTileWalkable(cellPos.x, cellPos.y);
     }
 }
 
@@ -79,7 +84,7 @@ public class MapInfo
                 {
                     map[i, j] = new GridInfo((int)TileTypes.WALL, false);
                 }
-                else { 
+                else {
                     map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
                 }
 
@@ -97,9 +102,11 @@ public class MapInfo
             for (int j = 0; j < map.GetLength(1); j++)
             {
                 GridInfo info = map[i, j];
-                Tile tile = tileList[info.tileType];
+                if (info.tileType != (int)TileTypes.EMPTY) {
+                    Tile tile = tileList[info.tileType];
 
-                tm.SetTile(new Vector3Int(i, j, 0), tile);
+                    tm.SetTile(new Vector3Int(i, j, 0), tile);
+                }
             }
         }
 
@@ -116,12 +123,12 @@ public class GridInfo
 {
     public int tileType {  get; set; }
     public bool walkable { get; set; }
-    public bool playerPos { get; set; }
+    public bool initPlayerPos { get; set; }
 
 
     public GridInfo(int type, bool isPlayerPos) {
         tileType = type;
-        playerPos = isPlayerPos;
+        initPlayerPos = isPlayerPos;
         walkable = tileType == (int) TileTypes.FLOOR;
     }
 }

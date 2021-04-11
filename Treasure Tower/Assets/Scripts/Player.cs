@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     bool skipTurn = false, throwObject = false;
 
+
+    private TileMapGenerator mapGridInfo; 
+
     // Variables for movement
     Vector2 movement;
     public Transform movePoint;
@@ -27,8 +30,11 @@ public class Player : MonoBehaviour
     }
     CharLifeStates lifeState;
 
+
+
     void Start()
     {
+        mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         movePoint.parent = null;        
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -65,33 +71,49 @@ public class Player : MonoBehaviour
         {
             if ( Mathf.Abs(movement.x) == 1f)
             {
-                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                if (movement.x  > 0f)
-                {
-                    prevWalkState = CharWalkStates.walk;
-                    if(orientation < 0f){
-                        orientation = 1f;
-                        flip = false;
+
+                Vector3 cachePos = movePoint.position;
+                cachePos += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+
+                if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
+                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                    if (movement.x > 0f)
+                    {
+                        prevWalkState = CharWalkStates.walk;
+                        if (orientation < 0f)
+                        {
+                            orientation = 1f;
+                            flip = false;
+                        }
                     }
-                }
-                else
-                {
-                    prevWalkState = CharWalkStates.walk;
-                    if(orientation > 0f){
-                        orientation = -1f;
-                        flip = true;
+                    else
+                    {
+                        prevWalkState = CharWalkStates.walk;
+                        if (orientation > 0f)
+                        {
+                            orientation = -1f;
+                            flip = true;
+                        }
                     }
+
+                    // if we moved, send event for moving
+                    Messenger.Broadcast(GameEvent.MOVED);
                 }
 
-                // if we moved, send event for moving
-                Messenger.Broadcast(GameEvent.MOVED);
+                
             } else if ( Mathf.Abs(movement.y) == 1f)
             {
-                movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                prevWalkState = CharWalkStates.walk;
 
-                // if we moved, send event for moving
-                Messenger.Broadcast(GameEvent.MOVED);
+                Vector3 cachePos = movePoint.position;
+                cachePos += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+
+                if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
+                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                    prevWalkState = CharWalkStates.walk;
+
+                    // if we moved, send event for moving
+                    Messenger.Broadcast(GameEvent.MOVED);
+                }
             } else if(skipTurn) 
             {
                     Messenger.Broadcast(GameEvent.MOVED);
