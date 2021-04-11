@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
+    bool skipTurn = false;
 
     // Variables for movement
     Vector2 movement;
@@ -40,6 +41,10 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         movement = Vector2.ClampMagnitude(movement, 1.0f);
+        if (Input.GetKeyDown(KeyCode.Space)){
+            skipTurn = true;
+            Debug.Log("SKIP");
+        }
     }
 
     void Update()
@@ -83,6 +88,10 @@ public class Player : MonoBehaviour
 
                 // if we moved, send event for moving
                 Messenger.Broadcast(GameEvent.MOVED);
+            } else if(skipTurn) 
+            {
+                    Messenger.Broadcast(GameEvent.MOVED);
+                    skipTurn = false;
             } else {
                 prevWalkState = CharWalkStates.idle;
             }
