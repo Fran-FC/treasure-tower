@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
+    bool skipTurn = false, throwObject = false;
 
     // Variables for movement
     Vector2 movement;
@@ -40,12 +41,20 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         movement = Vector2.ClampMagnitude(movement, 1.0f);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            skipTurn = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            throwObject = true;
+        }
     }
 
     void Update()
     {
         // grid movement logic
         CalcMovement();
+        CalcAction();
     }
     void CalcMovement(){
         CharWalkStates state = prevWalkState;
@@ -83,12 +92,23 @@ public class Player : MonoBehaviour
 
                 // if we moved, send event for moving
                 Messenger.Broadcast(GameEvent.MOVED);
+            } else if(skipTurn) 
+            {
+                    Messenger.Broadcast(GameEvent.MOVED);
+                    skipTurn = false;
             } else {
                 prevWalkState = CharWalkStates.idle;
             }
         } 
         animator.SetInteger("WalkState", (int)state);
         spriteRenderer.flipX = flip;
+    }
+
+    private void CalcAction(){
+        if (throwObject) {
+            throwObject = false;
+
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

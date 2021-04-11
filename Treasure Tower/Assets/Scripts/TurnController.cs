@@ -7,10 +7,10 @@ public class TurnController : MonoBehaviour
     float countdown;
     public float timeToMove;
     public bool playerMoved = false;
+
     private void Start() {
         countdown = timeToMove;
     }
-
     private void Awake() {
         Messenger.AddListener(GameEvent.MOVED, OnMoved);
     }
@@ -33,13 +33,13 @@ public class TurnController : MonoBehaviour
         
     }
 
-    private void SignalMove(){
+    private void SignalMove()
+    {
         Messenger.Broadcast(GameEvent.MOVE_ORDER);
     }
 
-    private void OnMoved(){
-
-        Debug.Log("PLAYER MOVED");
+    private void OnMoved()
+    {
         playerMoved = true;
     }
 }
