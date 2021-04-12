@@ -71,6 +71,7 @@ public class Enemy : MonoBehaviour
             ///if (CanWalk())
             //{
                 siguienteMovimiento = CalcPath();
+                animator.SetInteger("WalkState", 1);
                 this.transform.position += siguienteMovimiento;
                 animator.SetInteger("WalkState", 0);
             //}
