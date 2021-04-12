@@ -26,6 +26,8 @@ public class TileMapGenerator : MonoBehaviour
 
     private Tilemap tilemap;
 
+    [SerializeField]
+    private GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,7 @@ public class TileMapGenerator : MonoBehaviour
         Vector3 center = tilemap.GetCellCenterWorld(tilemapPos);
 
         Instantiate(player, center, Quaternion.identity);
+        Instantiate(enemy, new Vector3(center.x - 3, center.y, 0),Quaternion.identity);
     }
 
 
