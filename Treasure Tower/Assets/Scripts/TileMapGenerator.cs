@@ -32,6 +32,9 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField]
     private List<GameObject> enemyTypesList;
 
+    [SerializeField]
+    private List<GameObject> objectTypesList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,22 @@ public class TileMapGenerator : MonoBehaviour
 
         Instantiate(player, center, Quaternion.identity);
 
+        spawnObjects();
+    }
+
+
+
+    public bool isTileWalkable(float v_x, float v_y) {
+
+        int x = (int) Mathf.Floor(v_x);
+        int y = (int) Mathf.Floor(v_y);
+
+        Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x,y,0));
+        return mapInfo.isTileWalkable(cellPos.x, cellPos.y);
+    }
+
+
+    public void spawnEnemies() {
         List<EnemyInfo> enemies = mapInfo.getEnemiesList();
 
         for (int i = 0; i < enemies.Count; i++)
@@ -69,15 +88,21 @@ public class TileMapGenerator : MonoBehaviour
         }
     }
 
+    public void spawnObjects() {
+        List<ObjectInfo> objects = mapInfo.getObjectsList();
 
+        for (int i = 0; i < objects.Count; i++)
+        {
 
-    public bool isTileWalkable(float v_x, float v_y) {
+            ObjectInfo obj = objects[i];
 
-        int x = (int) Mathf.Floor(v_x);
-        int y = (int) Mathf.Floor(v_y);
+            Vector3 objPos = tilemap.GetCellCenterWorld(obj.position);
 
-        Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x,y,0));
-        return mapInfo.isTileWalkable(cellPos.x, cellPos.y);
+            GameObject objPrefab = objectTypesList[obj.objectType];
+
+            Instantiate(objPrefab, objPos, Quaternion.identity);
+
+        }
     }
 }
 
@@ -88,10 +113,12 @@ public class MapInfo
     Vector3Int playerSpawn { get; set; }
 
     List<EnemyInfo> enemies;
+    List<ObjectInfo> objects;
 
     public MapInfo(int rows, int cols) {
         map = new GridInfo[rows, cols];
         enemies = new List<EnemyInfo>();
+        objects = new List<ObjectInfo>();
     }
 
     public void updateMapFakeInfo() {
@@ -104,7 +131,7 @@ public class MapInfo
                     map[i, j] = new GridInfo((int)TileTypes.WALL, false);
                 }
                 else if (j == Mathf.FloorToInt(map.GetLength(1) / 2) && i == Mathf.FloorToInt(map.GetLength(0) / 2))  {
-                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
+                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false, false, 0, true, 0);
                 }
                 else {
                     map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
@@ -140,6 +167,10 @@ public class MapInfo
                     if (info.hasEnemy) {
                         enemies.Add(new EnemyInfo(new Vector3Int(i, j, 0), info.enemyType));
                     }
+
+                    if (info.hasObject) {
+                        objects.Add(new ObjectInfo(new Vector3Int(i, j, 0), info.objectType));
+                    }
                 }
             }
         }
@@ -154,6 +185,10 @@ public class MapInfo
         return enemies;
     }
 
+    public List<ObjectInfo> getObjectsList()
+    {
+        return objects;
+    }
 
     public bool isTileWalkable(int x, int y) {
         return map[x, y].walkable;
@@ -170,14 +205,19 @@ public class GridInfo
     public bool hasEnemy { get; set; }
     public int enemyType { get; set; }
 
+    public bool hasObject { get; set; }
+    public int objectType { get; set; }
 
 
-    public GridInfo(int type, bool isPlayerPos, bool isEnemy = false, int eType = -1) {
+    public GridInfo(int type, bool isPlayerPos, bool isEnemy = false, int eType = -1, bool isObject = false, int oType = -1) {
         tileType = type;
         initPlayerPos = isPlayerPos;
         walkable = tileType == (int) TileTypes.FLOOR;
         hasEnemy = isEnemy;
         enemyType = eType;
+
+        hasObject = isObject;
+        objectType = oType;
     }
 }
 
@@ -190,5 +230,18 @@ public class EnemyInfo {
     public EnemyInfo(Vector3Int pos, int type) {
         position = pos;
         enemyType = type;
+    }
+}
+
+
+public class ObjectInfo {
+    public Vector3Int position { get; set; }
+    public int objectType { get; set; }
+
+
+    public ObjectInfo(Vector3Int pos, int type)
+    {
+        position = pos;
+        objectType = type;
     }
 }
