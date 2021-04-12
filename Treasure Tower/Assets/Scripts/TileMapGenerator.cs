@@ -105,7 +105,7 @@ public class MapInfo
                     map[i, j] = new GridInfo((int)TileTypes.WALL, false);
                 }
                 else if (j == Mathf.FloorToInt(map.GetLength(1) / 2) && i == Mathf.FloorToInt(map.GetLength(0) / 2))  {
-                    map[i, j] = new GridInfo((int)TileTypes.SWORD, false);
+                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
                 }
                 else {
                     map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
@@ -177,7 +177,7 @@ public class GridInfo
     public GridInfo(int type, bool isPlayerPos, bool isEnemy = false, int eType = -1) {
         tileType = type;
         initPlayerPos = isPlayerPos;
-        walkable = tileType == (int) TileTypes.FLOOR || tileType == (int) TileTypes.SWORD;
+        walkable = tileType == (int) TileTypes.FLOOR;
         hasEnemy = isEnemy;
         enemyType = eType;
     }
