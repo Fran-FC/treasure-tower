@@ -129,7 +129,6 @@ public class MapInfo
             {
                 GridInfo info = map[i, j];
                 if (info.tileType != (int)TileTypes.EMPTY) {
-                    Debug.Log(info.tileType);
                     Tile tile = tileList[info.tileType];
 
                     tm.SetTile(new Vector3Int(i, j, 0), tile);

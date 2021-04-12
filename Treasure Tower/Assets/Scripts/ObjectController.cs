@@ -30,4 +30,12 @@ public class ObjectController : MonoBehaviour
             transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), rotationOrientation * 360f * Time.deltaTime);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Enemy")) {
+
+        } else if (other.CompareTag("Item")) {
+
+        }
+    }
 }

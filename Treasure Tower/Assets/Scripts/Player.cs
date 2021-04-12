@@ -6,14 +6,14 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
-    bool skipTurn = false, throwObject = false;
+    bool skipTurn = false, throwObject = false, pickUpItem = false;
 
-
+    Transform item;
     private TileMapGenerator mapGridInfo; 
-
     // Variables for movement
     Vector2 movement;
     public Transform movePoint;
+    public GameObject rotationObject;
     public float moveSpeed = 5.0f;
     float orientation = 1f;
     bool flip = false;
@@ -47,17 +47,23 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         movement = Vector2.ClampMagnitude(movement, 1.0f);
+    }
+
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             skipTurn = true;
         }
         if (Input.GetKeyDown(KeyCode.Z)) {
             throwObject = true;
+        } 
+        if(Input.GetKeyDown(KeyCode.X)) {
+            if(pickUpItem) {
+                pickUpItem = false;
+                item.parent = rotationObject.transform;
+            }
         }
-    }
-
-    void Update()
-    {
         // grid movement logic
         CalcMovement();
         CalcAction();
@@ -71,7 +77,6 @@ public class Player : MonoBehaviour
         {
             if ( Mathf.Abs(movement.x) == 1f)
             {
-
                 Vector3 cachePos = movePoint.position;
                 cachePos += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
 
@@ -95,11 +100,9 @@ public class Player : MonoBehaviour
                             flip = true;
                         }
                     }
-
                     // if we moved, send event for moving
                     Messenger.Broadcast(GameEvent.MOVED);
                 }
-
                 
             } else if ( Mathf.Abs(movement.y) == 1f)
             {
@@ -129,8 +132,12 @@ public class Player : MonoBehaviour
     private void CalcAction(){
         if (throwObject) {
             throwObject = false;
-
-        }
+            Debug.Log(item.parent.ToString());
+            if(item.parent == rotationObject.transform)
+            {
+                item.parent = null;
+            }
+        }  
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -139,6 +146,14 @@ public class Player : MonoBehaviour
             lifes--;
         else if(other.gameObject.CompareTag("Armor"))
             lifes++;
+        else if(other.gameObject.CompareTag("Item")) {
+            // pick up object if we pressed X key
+            pickUpItem = true;
+            item = other.gameObject.transform;
+            // rotate item to  
+            // ToDo: show in the UI that we picked up the item
+            //
+        }
         
         // MAX LIFES = 3
         if(lifes > 3)
