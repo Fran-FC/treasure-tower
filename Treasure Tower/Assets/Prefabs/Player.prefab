@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 7327101891002810651}
   - component: {fileID: 2239171629029034028}
   - component: {fileID: 7682735849666858165}
+  - component: {fileID: 8964432538152566704}
   m_Layer: 0
   m_Name: RotationObject
-  m_TagString: Untagged
+  m_TagString: RotationObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +128,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &8964432538152566704
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7327101891002810649}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7327101891252673074
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePoint: {fileID: 7327101890006539240}
-  rotationObject: {fileID: 7327101891002810649}
   moveSpeed: 5
 --- !u!61 &7327101891252673080
 BoxCollider2D:

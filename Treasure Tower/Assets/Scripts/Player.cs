@@ -6,14 +6,11 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
-    bool skipTurn = false, throwObject = false, pickUpItem = false;
-
-    Transform item;
+    bool skipTurn = false;
     private TileMapGenerator mapGridInfo; 
     // Variables for movement
     Vector2 movement;
     public Transform movePoint;
-    public GameObject rotationObject;
     public float moveSpeed = 5.0f;
     float orientation = 1f;
     bool flip = false;
@@ -54,15 +51,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             skipTurn = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Z)) {
-            throwObject = true;
-        } 
-        if(Input.GetKeyDown(KeyCode.X)) {
-            if(pickUpItem) {
-                pickUpItem = false;
-                item.parent = rotationObject.transform;
-            }
         }
         // grid movement logic
         CalcMovement();
@@ -130,35 +118,46 @@ public class Player : MonoBehaviour
     }
 
     private void CalcAction(){
-        if (throwObject) {
-            throwObject = false;
-            Debug.Log(item.parent.ToString());
-            if(item.parent == rotationObject.transform)
-            {
-                item.parent = null;
-            }
-        }  
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         // logic for recieving damage or recoverying health
-        if(other.gameObject.CompareTag("Enemy"))
+        
+        if(other.gameObject.CompareTag("Enemy")) {
             lifes--;
-        else if(other.gameObject.CompareTag("Armor"))
+        }
+        else if(other.gameObject.CompareTag("Armor")){
             lifes++;
-        else if(other.gameObject.CompareTag("Item")) {
-            // pick up object if we pressed X key
-            pickUpItem = true;
-            item = other.gameObject.transform;
-            // rotate item to  
-            // ToDo: show in the UI that we picked up the item
-            //
         }
         
         // MAX LIFES = 3
         if(lifes > 3)
             lifes = 3;
 
+        switch (lifes)
+        {
+            case 3:
+                lifeState = CharLifeStates.full;
+                break;
+            case 2:
+                lifeState = CharLifeStates.half;
+                break;
+            case 1:
+                lifeState = CharLifeStates.nacked;
+                break;
+            default:
+                lifeState = CharLifeStates.dead;
+                transform.gameObject.SetActive(false);
+                break;
+        }
+        // update sprite and animations
+        animator.SetInteger("HealthState", (int)lifeState);
+    }
+    private void OnCollisionStay2D(Collision2D other) {
+        Debug.Log(lifes);
+        if(other.gameObject.CompareTag("Enemy")){
+            lifes--;
+        }
         switch (lifes)
         {
             case 3:

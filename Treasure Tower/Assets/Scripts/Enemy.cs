@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
             //{
                 siguienteMovimiento = CalcPath();
                 animator.SetBool("walking", true);
-                Debug.Log(animator.GetBool("walking"));
+//                Debug.Log(animator.GetBool("walking"));
                 this.transform.position += siguienteMovimiento;
                 ChangeAnimWalk();
             //}

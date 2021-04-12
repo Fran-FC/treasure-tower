@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectController : MonoBehaviour
 {
+    bool throwObject = false, pickUpItem = false, firstObject = false;
+    Transform item;
 
     float rotationDest = 0f, rotationOrientation = 1f, diff;
     private void FixedUpdate() {
@@ -31,11 +33,38 @@ public class ObjectController : MonoBehaviour
         }
     }
 
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            throwObject = true;
+        } 
+        if(Input.GetKeyDown(KeyCode.X)) {
+            if(pickUpItem) {
+                pickUpItem = false;
+                item.parent = transform;
+
+                if(!firstObject ){
+                    firstObject = true;
+                    Messenger.Broadcast("SPAWN_ENEMY");
+                }
+            }
+        }
+        if (throwObject) {
+            throwObject = false;
+            Debug.Log(item.parent.ToString());
+            if(item.parent == transform)
+            {
+                item.parent = null;
+            }
+        }  
+    }
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Enemy")) {
-
-        } else if (other.CompareTag("Item")) {
-
+        if (other.CompareTag("Item")) {
+            // pick up object if we pressed X key
+            pickUpItem = true;
+            item = other.gameObject.transform;
+            // rotate item to face opposite PLayer's side 
+            // ToDo: show in the UI that we picked up the item
         }
     }
 }
