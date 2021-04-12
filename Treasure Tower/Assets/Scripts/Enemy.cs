@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     private bool inRange = false;
     [SerializeField]
     private GameObject player;
-    private bool isFlipped = false;
+    private bool isFlippedX = false;
+    private bool isFlippedY = false;
 
     // Start is called before the first frame update
     /*enum WhichEnemy
@@ -70,20 +71,21 @@ public class Enemy : MonoBehaviour
             ///if (CanWalk())
             //{
                 siguienteMovimiento = CalcPath();
-                animator.SetBool("walking", true);
-                Debug.Log(animator.GetBool("walking"));
                 this.transform.position += siguienteMovimiento;
-                ChangeAnimWalk();
+                animator.SetInteger("WalkState", 0);
             //}
         }
         //TD
 
     }
-
-    private void ChangeAnimWalk()
+    void Update()
     {
-
+        Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
+        float nuevaX = Math.Sign(aux.x) * -1;
+        if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
+        spriteRenderer.flipX = isFlippedX;
     }
+
     private void CalcInRange()
     {
         if(player.transform.position.x == this.transform.position.x && (player.transform.position.y == this.transform.position.y - 1 || player.transform.position.y == this.transform.position.y + 1))
@@ -105,18 +107,18 @@ public class Enemy : MonoBehaviour
     private Vector3 CalcPath()
     {
         //orientation = new Vector2(0, 0);
+        animator.SetInteger("WalkState", 1);
         Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
         float nuevaX = Math.Sign(aux.x) * -1;
+        if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
+        spriteRenderer.flipX = isFlippedX;
         if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0) && Mathf.Abs(aux.x) > Mathf.Abs(aux.y))
         {
             orientation.x = nuevaX;
-            if (nuevaX > 0) isFlipped = false; else isFlipped = true;
-            spriteRenderer.flipX = isFlipped;
             return new Vector3(nuevaX, 0f, 0f);
         }
 
         float nuevaY = Math.Sign(aux.y) * -1;
-        orientation.y = nuevaY;
         return new Vector3(0f, nuevaY, 0f);
         
     }
