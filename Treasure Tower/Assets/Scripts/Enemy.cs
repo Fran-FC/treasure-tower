@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour
 
     private void OnMyTurn()
     {
-        Debug.Log("Hola");
         CalcInRange();
         if (inRange)
         {
