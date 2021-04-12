@@ -35,6 +35,17 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField]
     private List<GameObject> objectTypesList;
 
+
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.SPAWN_ENEMY, spawnEnemies);
+    }
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.SPAWN_ENEMY, spawnEnemies);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
