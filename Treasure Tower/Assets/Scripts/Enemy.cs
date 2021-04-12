@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public Vector2 orientation = new Vector2(0,0);
     private bool inRange = false;
     [SerializeField]
-    private Player player;
+    private GameObject player;
 
     // Start is called before the first frame update
     /*enum WhichEnemy
@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     private void OnMyTurn()
     {
+        Debug.Log("Hola");
         CalcInRange();
         if (inRange)
         {

@@ -50,7 +50,7 @@ MonoBehaviour:
   armor: 0
   moveSpeed: 0
   orientation: {x: 0, y: 0}
-  player: {fileID: 0}
+  player: {fileID: 7327101891252673074, guid: e2d14cca6d96cc34ab7a87e47ff7c563, type: 3}
 --- !u!61 &1213039723259361684
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -27,7 +27,6 @@ public class TileMapGenerator : MonoBehaviour
     private Tilemap tilemap;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
