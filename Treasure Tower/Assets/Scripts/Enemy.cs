@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private bool inRange = false;
     [SerializeField]
     private GameObject player;
+    private bool isFlipped = false;
 
     // Start is called before the first frame update
     /*enum WhichEnemy
@@ -24,12 +25,14 @@ public class Enemy : MonoBehaviour
     }*/
     int whichEnemy;
     SpriteRenderer spriteRenderer;
+    Animator animator;
 
     void Start()
     {
         //player = GetComponent<Player>();
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         whichEnemy = new System.Random().Next(0, 3);
         InitSprite();
     }
@@ -45,28 +48,33 @@ public class Enemy : MonoBehaviour
     }
     private void Awake()
     {
+        Messenger.AddListener(GameEvent.MOVED, OnMyTurn);
         Messenger.AddListener(GameEvent.MOVE_ORDER, OnMyTurn);
     }
     private void OnDestroy()
     {
+        Messenger.RemoveListener(GameEvent.MOVED, OnMyTurn);
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
 
     }
 
     private void OnMyTurn()
     {
+        player = GameObject.FindWithTag("Player");
         CalcInRange();
         if (inRange)
         {
             Attack();
         } else
         {
-            if (CanWalk())
-            {
+            ///if (CanWalk())
+            //{
                 siguienteMovimiento = CalcPath();
+                animator.SetBool("walking", true);
+                Debug.Log(animator.GetBool("walking"));
                 this.transform.position += siguienteMovimiento;
                 ChangeAnimWalk();
-            }
+            //}
         }
         //TD
 
@@ -96,12 +104,14 @@ public class Enemy : MonoBehaviour
     }
     private Vector3 CalcPath()
     {
-        orientation = new Vector2(0, 0);
+        //orientation = new Vector2(0, 0);
         Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
         float nuevaX = Math.Sign(aux.x) * -1;
-        if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0))
+        if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0) && Mathf.Abs(aux.x) > Mathf.Abs(aux.y))
         {
             orientation.x = nuevaX;
+            if (nuevaX > 0) isFlipped = false; else isFlipped = true;
+            spriteRenderer.flipX = isFlipped;
             return new Vector3(nuevaX, 0f, 0f);
         }
 
@@ -110,7 +120,7 @@ public class Enemy : MonoBehaviour
         return new Vector3(0f, nuevaY, 0f);
         
     }
-   private bool CanWalk()
+   /*private bool CanWalk()
     {
         bool canWalk = false;
         if(mapGridInfo.isTileWalkable(this.transform.position.x-1,0) || mapGridInfo.isTileWalkable(this.transform.position.x + 1, 0) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1))
@@ -118,5 +128,5 @@ public class Enemy : MonoBehaviour
             canWalk = true;
         }
         return canWalk;
-    }
+    }*/
 }

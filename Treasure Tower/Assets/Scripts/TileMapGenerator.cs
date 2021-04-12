@@ -27,11 +27,16 @@ public class TileMapGenerator : MonoBehaviour
 
     private Tilemap tilemap;
 
+<<<<<<< HEAD
+    [SerializeField]
+    private GameObject enemy;
+=======
     private Vector3Int playerSpawn;
 
     [SerializeField]
     private List<GameObject> enemyTypesList;
 
+>>>>>>> ea4b168b5bf8c8bd904a3f52e23f1e824e801e78
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +59,9 @@ public class TileMapGenerator : MonoBehaviour
         Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
 
         Instantiate(player, center, Quaternion.identity);
+<<<<<<< HEAD
+        Instantiate(enemy, new Vector3(center.x - 3, center.y, 0),Quaternion.identity);
+=======
 
 
         List<EnemyInfo> enemies = mapInfo.getEnemiesList();
@@ -68,6 +76,7 @@ public class TileMapGenerator : MonoBehaviour
             Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
 
         }
+>>>>>>> ea4b168b5bf8c8bd904a3f52e23f1e824e801e78
     }
 
 
