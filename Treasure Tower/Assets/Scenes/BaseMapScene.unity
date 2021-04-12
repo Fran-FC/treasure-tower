@@ -274,19 +274,24 @@ PrefabInstance:
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
       propertyPath: tileList.Array.size
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: enemyTypesList.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
       propertyPath: tileList.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: eefe43458b612834faf527d1d5ab690c,
+      objectReference: {fileID: 11400000, guid: d5cdf85ff45553942bda0b927315387b,
         type: 2}
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
       propertyPath: tileList.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 48a4a914cba5ed9448a816a6c02daf50,
+      objectReference: {fileID: 11400000, guid: 4776242403383824db0d7282776c3031,
         type: 2}
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
@@ -294,5 +299,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1213039723259361686, guid: 9a72b2ba4b25edd4b9c695aafb8a14e9,
         type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: enemyTypesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1213039723259361686, guid: 9a72b2ba4b25edd4b9c695aafb8a14e9,
+        type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: tileList.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: eefe43458b612834faf527d1d5ab690c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134a03b760ebd0a4c99cf0e80118c072, type: 3}

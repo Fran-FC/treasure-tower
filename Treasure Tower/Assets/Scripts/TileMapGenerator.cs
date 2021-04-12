@@ -29,6 +29,9 @@ public class TileMapGenerator : MonoBehaviour
 
     private Vector3Int playerSpawn;
 
+    [SerializeField]
+    private List<GameObject> enemyTypesList;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,11 +51,23 @@ public class TileMapGenerator : MonoBehaviour
         mapInfo.drawTileMap(tilemap, tileList);
 
         playerSpawn = mapInfo.getPlayerSpawn();
-
-        
         Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
 
         Instantiate(player, center, Quaternion.identity);
+
+
+        List<EnemyInfo> enemies = mapInfo.getEnemiesList();
+
+        for (int i = 0; i < enemies.Count; i++) {
+
+            EnemyInfo enemy = enemies[i];
+
+            Vector3 enemyPos = tilemap.GetCellCenterWorld(enemy.position);
+            GameObject enemyPrefab = enemyTypesList[enemy.enemyType];
+
+            Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
+
+        }
     }
 
 
@@ -73,11 +88,11 @@ public class MapInfo
     GridInfo[,] map { get; }
     Vector3Int playerSpawn { get; set; }
 
-    List<Vector3Int> enemies;
+    List<EnemyInfo> enemies;
 
     public MapInfo(int rows, int cols) {
         map = new GridInfo[rows, cols];
-        enemies = new List<Vector3Int>();
+        enemies = new List<EnemyInfo>();
     }
 
     public void updateMapFakeInfo() {
@@ -101,8 +116,8 @@ public class MapInfo
 
         map[(int)map.GetLength(0) / 2, 1] = new GridInfo((int)TileTypes.FLOOR, true);
 
-        map[0, 3] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
-        map[0, map.GetLength(1) - 3] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
+        map[3, map.GetLength(1) - 2] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
+        map[map.GetLength(0) - 3, map.GetLength(1) - 2] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
     }
 
     public void drawTileMap(Tilemap tm, List<Tile> tileList) {
@@ -115,12 +130,17 @@ public class MapInfo
             {
                 GridInfo info = map[i, j];
                 if (info.tileType != (int)TileTypes.EMPTY) {
+                    Debug.Log(info.tileType);
                     Tile tile = tileList[info.tileType];
 
                     tm.SetTile(new Vector3Int(i, j, 0), tile);
 
                     if (info.initPlayerPos) {
                         playerSpawn = new Vector3Int(i, j, 0);
+                    }
+
+                    if (info.hasEnemy) {
+                        enemies.Add(new EnemyInfo(new Vector3Int(i, j, 0), info.enemyType));
                     }
                 }
             }
@@ -130,6 +150,10 @@ public class MapInfo
 
     public Vector3Int getPlayerSpawn() {
         return playerSpawn;
+    }
+
+    public List<EnemyInfo> getEnemiesList() {
+        return enemies;
     }
 
 
@@ -156,5 +180,17 @@ public class GridInfo
         walkable = tileType == (int) TileTypes.FLOOR || tileType == (int) TileTypes.SWORD;
         hasEnemy = isEnemy;
         enemyType = eType;
+    }
+}
+
+
+public class EnemyInfo {
+    public Vector3Int position { get; set; }
+    public int enemyType { get; set; }
+
+
+    public EnemyInfo(Vector3Int pos, int type) {
+        position = pos;
+        enemyType = type;
     }
 }
