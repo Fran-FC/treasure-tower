@@ -9,6 +9,7 @@ enum TileTypes {
     WALL,
     FLOOR,
     OBJECT,
+    SWORD,
     EMPTY,
 }
 
@@ -25,6 +26,8 @@ public class TileMapGenerator : MonoBehaviour
     private MapInfo mapInfo;
 
     private Tilemap tilemap;
+
+    private Vector3Int playerSpawn;
 
 
 
@@ -45,11 +48,10 @@ public class TileMapGenerator : MonoBehaviour
         mapInfo.updateMapFakeInfo();
         mapInfo.drawTileMap(tilemap, tileList);
 
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        worldPos.z = 0;
+        playerSpawn = mapInfo.getPlayerSpawn();
 
-        Vector3Int tilemapPos = tilemap.WorldToCell(worldPos);
-        Vector3 center = tilemap.GetCellCenterWorld(tilemapPos);
+        
+        Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
 
         Instantiate(player, center, Quaternion.identity);
     }
@@ -70,9 +72,13 @@ public class TileMapGenerator : MonoBehaviour
 public class MapInfo 
 {
     GridInfo[,] map { get; }
+    Vector3Int playerSpawn { get; set; }
+
+    List<Vector3Int> enemies;
 
     public MapInfo(int rows, int cols) {
         map = new GridInfo[rows, cols];
+        enemies = new List<Vector3Int>();
     }
 
     public void updateMapFakeInfo() {
@@ -84,6 +90,9 @@ public class MapInfo
                 {
                     map[i, j] = new GridInfo((int)TileTypes.WALL, false);
                 }
+                else if (j == Mathf.FloorToInt(map.GetLength(1) / 2) && i == Mathf.FloorToInt(map.GetLength(0) / 2))  {
+                    map[i, j] = new GridInfo((int)TileTypes.SWORD, false);
+                }
                 else {
                     map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
                 }
@@ -91,6 +100,10 @@ public class MapInfo
             }
         }
 
+        map[(int)map.GetLength(0) / 2, 1] = new GridInfo((int)TileTypes.FLOOR, true);
+
+        map[0, 3] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
+        map[0, map.GetLength(1) - 3] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
     }
 
     public void drawTileMap(Tilemap tm, List<Tile> tileList) {
@@ -106,10 +119,18 @@ public class MapInfo
                     Tile tile = tileList[info.tileType];
 
                     tm.SetTile(new Vector3Int(i, j, 0), tile);
+
+                    if (info.initPlayerPos) {
+                        playerSpawn = new Vector3Int(i, j, 0);
+                    }
                 }
             }
         }
 
+    }
+
+    public Vector3Int getPlayerSpawn() {
+        return playerSpawn;
     }
 
 
@@ -125,10 +146,16 @@ public class GridInfo
     public bool walkable { get; set; }
     public bool initPlayerPos { get; set; }
 
+    public bool hasEnemy { get; set; }
+    public int enemyType { get; set; }
 
-    public GridInfo(int type, bool isPlayerPos) {
+
+
+    public GridInfo(int type, bool isPlayerPos, bool isEnemy = false, int eType = -1) {
         tileType = type;
         initPlayerPos = isPlayerPos;
-        walkable = tileType == (int) TileTypes.FLOOR;
+        walkable = tileType == (int) TileTypes.FLOOR || tileType == (int) TileTypes.SWORD;
+        hasEnemy = isEnemy;
+        enemyType = eType;
     }
 }
