@@ -1,0 +1,2168 @@
+fileFormatVersion: 2
+guid: 053aee9ece92fd4409dd1bf7fda68adc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2055351416219040193
+    second: skeleton-idle_down1
+  - first:
+      213: -4158112062206235961
+    second: skeleton-walk_down1
+  - first:
+      213: -8077387578480230203
+    second: skeleton-idle_down2
+  - first:
+      213: 2179245888944909436
+    second: skeleton-walk_down2
+  - first:
+      213: -4891557235597826072
+    second: skeleton-attack_down1
+  - first:
+      213: -3700448695462490802
+    second: skeleton-attack_down2
+  - first:
+      213: -9018761656055078553
+    second: skeleton-attack_down3
+  - first:
+      213: -7088847132830510926
+    second: skeleton-test3_7
+  - first:
+      213: 1168121600130510351
+    second: skeleton-dead_down1
+  - first:
+      213: 4867354207397165336
+    second: skeleton-test3_9
+  - first:
+      213: -305355299339460244
+    second: skeleton-dead_down2
+  - first:
+      213: 6178807941618973317
+    second: skeleton-test3_11
+  - first:
+      213: 5024584993690170565
+    second: skeleton-dead_down3
+  - first:
+      213: -1813001466891068452
+    second: skeleton-dead_down4
+  - first:
+      213: -373307430163793219
+    second: skeleton-idle_left1
+  - first:
+      213: -26855663077579292
+    second: skeleton-walk_left1
+  - first:
+      213: -7882361961442902597
+    second: skeleton-idle_left2
+  - first:
+      213: -5127548970661641834
+    second: skeleton-walk_left2
+  - first:
+      213: -27585199322521989
+    second: skeleton-attack_left1
+  - first:
+      213: 661974947758657829
+    second: skeleton-attack_left2
+  - first:
+      213: 6537460659803667658
+    second: skeleton-test3_20
+  - first:
+      213: 4851208927660993327
+    second: skeleton-test3_21
+  - first:
+      213: -743243372637387305
+    second: skeleton-dead_left1
+  - first:
+      213: -8196766933401186645
+    second: skeleton-dead_left2
+  - first:
+      213: 9102984916674665888
+    second: skeleton-dead_left3
+  - first:
+      213: -3017442813014163584
+    second: skeleton-dead_left4
+  - first:
+      213: -2602754003075256487
+    second: skeleton-idle_right1
+  - first:
+      213: 65829263390413066
+    second: skeleton-walk_right1
+  - first:
+      213: -3367844220550481945
+    second: skeleton-idle_right2
+  - first:
+      213: 710459762585079594
+    second: skeleton-walk_right2
+  - first:
+      213: 3187223549425545258
+    second: skeleton-attack_right1
+  - first:
+      213: -5541124595724063655
+    second: skeleton-attack_right2
+  - first:
+      213: -659230425545320278
+    second: skeleton-test3_32
+  - first:
+      213: 8056726855025225482
+    second: skeleton-test3_33
+  - first:
+      213: -6436303278424026709
+    second: skeleton-dead_right1
+  - first:
+      213: 3183993053340940604
+    second: skeleton-dead_right2
+  - first:
+      213: -435501688457716248
+    second: skeleton-dead_right3
+  - first:
+      213: -1848050601971823801
+    second: skeleton-dead_right4
+  - first:
+      213: -5956208719700882928
+    second: skeleton-idle_up1
+  - first:
+      213: -3057937413213456380
+    second: skeleton-walk_up1
+  - first:
+      213: 1691528882400259837
+    second: skeleton-idle_up2
+  - first:
+      213: -1523829797765052782
+    second: skeleton-walk_up2
+  - first:
+      213: -521984360217089117
+    second: skeleton-test3_42
+  - first:
+      213: 5015834475046198469
+    second: skeleton-attack_up1
+  - first:
+      213: 1273520210366149796
+    second: skeleton-attack_up2
+  - first:
+      213: -8505901115453085459
+    second: skeleton-test3_45
+  - first:
+      213: 8558944432422916925
+    second: skeleton-dead_up1
+  - first:
+      213: 814197561441655324
+    second: skeleton-test3_47
+  - first:
+      213: 7187986500043146148
+    second: skeleton-dead_up2
+  - first:
+      213: 664390616422796889
+    second: skeleton-test3_49
+  - first:
+      213: -239552822949881272
+    second: skeleton-dead_up3
+  - first:
+      213: -4462697221301093890
+    second: skeleton-dead_up4
+  - first:
+      213: -3842580004186867100
+    second: skeleton-test3_52
+  - first:
+      213: 5954489833288416501
+    second: skeleton-test3_53
+  - first:
+      213: -54782016917884308
+    second: skeleton-test3_54
+  - first:
+      213: 875890312861687816
+    second: skeleton-test3_55
+  - first:
+      213: 592443188572909873
+    second: skeleton-test3_56
+  - first:
+      213: 2577562269477060929
+    second: skeleton-test3_57
+  - first:
+      213: -8796421094751358061
+    second: skeleton-test3_58
+  - first:
+      213: 2906636662344504499
+    second: skeleton-test3_59
+  - first:
+      213: 8496976896082581869
+    second: skeleton-test3_60
+  - first:
+      213: -4580399360886103478
+    second: skeleton-test3_61
+  - first:
+      213: -4510272517131038780
+    second: skeleton-test3_62
+  - first:
+      213: 1191347475034034268
+    second: skeleton-test3_63
+  - first:
+      213: 1629754056604579876
+    second: skeleton-test3_64
+  - first:
+      213: -6304326118827881282
+    second: skeleton-test3_65
+  - first:
+      213: -3267793480173537250
+    second: skeleton-test3_66
+  - first:
+      213: 1518045162625017309
+    second: skeleton-test3_67
+  - first:
+      213: -2930519098090689393
+    second: skeleton-test3_68
+  - first:
+      213: -1819398099592830744
+    second: skeleton-test3_69
+  - first:
+      213: 4708647505773927725
+    second: skeleton-test3_70
+  - first:
+      213: -648049183907131746
+    second: skeleton-test3_71
+  - first:
+      213: 8341296197593279767
+    second: skeleton-test3_72
+  - first:
+      213: -1141320126608471994
+    second: skeleton-test3_73
+  - first:
+      213: 1237947038254117513
+    second: skeleton-test3_74
+  - first:
+      213: -2343607711683336669
+    second: skeleton-test3_75
+  - first:
+      213: -2783004061224207404
+    second: skeleton-test3_76
+  - first:
+      213: 6543246712879204284
+    second: skeleton-test3_77
+  - first:
+      213: 6408577593317723354
+    second: skeleton-test3_78
+  - first:
+      213: -1207072110270359663
+    second: skeleton-test3_79
+  - first:
+      213: -4105930955583989046
+    second: skeleton-test3_80
+  - first:
+      213: -3158904235017961285
+    second: skeleton-test3_81
+  - first:
+      213: 8832708721845964650
+    second: skeleton-test3_82
+  - first:
+      213: 4946707821521135923
+    second: skeleton-test3_83
+  - first:
+      213: 250944428513050532
+    second: skeleton-test3_84
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: skeleton-idle_down1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 224
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f360ba3d6cce973e0800000000000000
+      internalID: -2055351416219040193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_down1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 224
+        width: 36
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca2eeb2c1b6b46c0800000000000000
+      internalID: -4158112062206235961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_down2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 224
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c0888f0bca57ef80800000000000000
+      internalID: -8077387578480230203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_down2
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 224
+        width: 36
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7caac0079c3e3e10800000000000000
+      internalID: 2179245888944909436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_down1
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 233
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e723bd5c92bd1cb0800000000000000
+      internalID: -4891557235597826072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_down2
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 224
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d866d648d55acc0800000000000000
+      internalID: -3700448695462490802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_down3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 226
+        width: 57
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7616ce8ae0ce6d280800000000000000
+      internalID: -9018761656055078553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_7
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 233
+        width: 58
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b0579c471b5f9d90800000000000000
+      internalID: -7088847132830510926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_down1
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 224
+        width: 36
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e6d360860063010800000000000000
+      internalID: 1168121600130510351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_9
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 238
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81939effcd05c8340800000000000000
+      internalID: 4867354207397165336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_down2
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 224
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61a69c19f823cbf0800000000000000
+      internalID: -305355299339460244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_11
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 238
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58abf8f06198fb550800000000000000
+      internalID: 6178807941618973317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_down3
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 224
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c439ac2e69eab540800000000000000
+      internalID: 5024584993690170565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_down4
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 223
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb12b485cce6d6e0800000000000000
+      internalID: -1813001466891068452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_left1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 160
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbab211cedeb1daf0800000000000000
+      internalID: -373307430163793219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_left1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 160
+        width: 40
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e5ad0eaae690aff0800000000000000
+      internalID: -26855663077579292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_left2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 160
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbdf4210f893c9290800000000000000
+      internalID: -7882361961442902597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_left2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 160
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6910b4bc06947d8b0800000000000000
+      internalID: -5127548970661641834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_left1
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 160
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e9259486ffd9ff0800000000000000
+      internalID: -27585199322521989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_left2
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 167
+        width: 50
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 521dc5b25becf2900800000000000000
+      internalID: 661974947758657829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_20
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 168
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc30b845d9b9ba50800000000000000
+      internalID: 6537460659803667658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_21
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 168
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2bef6021d4f25340800000000000000
+      internalID: 4851208927660993327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_left1
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 160
+        width: 29
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d5094827187fa5f0800000000000000
+      internalID: -743243372637387305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_left2
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 160
+        width: 30
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bae44f307eb3f3e80800000000000000
+      internalID: -8196766933401186645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_left3
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 160
+        width: 29
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0add1225d8c445e70800000000000000
+      internalID: 9102984916674665888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_left4
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 160
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f3c38afb3ef16d0800000000000000
+      internalID: -3017442813014163584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_right1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 96
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f29f0360921ebd0800000000000000
+      internalID: -2602754003075256487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_right1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 96
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a011634cd5fd9e000800000000000000
+      internalID: 65829263390413066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_right2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 96
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e77c3766830341d0800000000000000
+      internalID: -3367844220550481945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_right2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 96
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f8710d36f0cd900800000000000000
+      internalID: 710459762585079594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_right1
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 96
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a20f44b7eea4b3c20800000000000000
+      internalID: 3187223549425545258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_right2
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 96
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95cefafc988f913b0800000000000000
+      internalID: -5541124595724063655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_32
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 96
+        width: 44
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8dd34bb61f9d6f0800000000000000
+      internalID: -659230425545320278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_33
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 96
+        width: 48
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0fe026636e3fcf60800000000000000
+      internalID: 8056726855025225482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_right1
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 96
+        width: 29
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba19adee448ada6a0800000000000000
+      internalID: -6436303278424026709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_right2
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 96
+        width: 30
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c39b2bfffc0df2c20800000000000000
+      internalID: 3183993053340940604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_right3
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 96
+        width: 29
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed15609589c4f9f0800000000000000
+      internalID: -435501688457716248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_right4
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 96
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74bc586d4c76a56e0800000000000000
+      internalID: -1848050601971823801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_up1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 32
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a052e0abb475da0800000000000000
+      internalID: -5956208719700882928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_up1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 32
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 408f804df160095d0800000000000000
+      internalID: -3057937413213456380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-idle_up2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 32
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfee7c27e84897710800000000000000
+      internalID: 1691528882400259837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-walk_up2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 32
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2960f0e5fd44adae0800000000000000
+      internalID: -1523829797765052782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_42
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 32
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab63fe6df981c8f0800000000000000
+      internalID: -521984360217089117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_up1
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 32
+        width: 37
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cc594941e2db9540800000000000000
+      internalID: 5015834475046198469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-attack_up2
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 32
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4b72942e37ca110800000000000000
+      internalID: 1273520210366149796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_45
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 32
+        width: 53
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de8e1de6008f4f980800000000000000
+      internalID: -8505901115453085459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_up1
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 32
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3310e23d9a77c670800000000000000
+      internalID: 8558944432422916925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_47
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 46
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1a18ba4e5c9c4b00800000000000000
+      internalID: 814197561441655324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_up2
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 32
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3006163abd0c360800000000000000
+      internalID: 7187986500043146148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_49
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 46
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ecbfbdeb3683900800000000000000
+      internalID: 664390616422796889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_up3
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 32
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a512b0affecacf0800000000000000
+      internalID: -239552822949881272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-dead_up4
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 32
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9b93885805112c0800000000000000
+      internalID: -4462697221301093890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_52
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 9
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46a3c6558d96caac0800000000000000
+      internalID: -3842580004186867100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_53
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 10
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fcb4d384f892a250800000000000000
+      internalID: 5954489833288416501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_54
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 9
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c62b78dbb006d3ff0800000000000000
+      internalID: -54782016917884308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_55
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 9
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 800a3505999c72c00800000000000000
+      internalID: 875890312861687816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_56
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 9
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131fc7ce0f7c83800800000000000000
+      internalID: 592443188572909873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_57
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 9
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14141a24a3755c320800000000000000
+      internalID: 2577562269477060929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_58
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 9
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 393b798ae95dce580800000000000000
+      internalID: -8796421094751358061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_59
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 9
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4db26f4a2765820800000000000000
+      internalID: 2906636662344504499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_60
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 9
+        width: 39
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6914b3d7735be570800000000000000
+      internalID: 8496976896082581869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_61
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 9
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4225fc9c072f60c0800000000000000
+      internalID: -4580399360886103478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_62
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 9
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf8238ca0b4861c0800000000000000
+      internalID: -4510272517131038780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_63
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 9
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50567d6734888010800000000000000
+      internalID: 1191347475034034268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_64
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 9
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428fa2ffdac0e9610800000000000000
+      internalID: 1629754056604579876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_65
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 9
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc0c03fbc88288a0800000000000000
+      internalID: -6304326118827881282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_66
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 9
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e183beea42776a2d0800000000000000
+      internalID: -3267793480173537250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_67
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 9
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5a34f480e211510800000000000000
+      internalID: 1518045162625017309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_68
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 9
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8c6ec62864b457d0800000000000000
+      internalID: -2930519098090689393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_69
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 9
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0afb8611330c6e0800000000000000
+      internalID: -1819398099592830744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_70
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 9
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2d1f2285f9785140800000000000000
+      internalID: 4708647505773927725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_71
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 9
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ecb3463baa107f0800000000000000
+      internalID: -648049183907131746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_72
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 9
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71d2dd792bc32c370800000000000000
+      internalID: 8341296197593279767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_73
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 6
+        width: 38
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6488f7e44673920f0800000000000000
+      internalID: -1141320126608471994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_74
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 9
+        width: 27
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98232e9b5421e2110800000000000000
+      internalID: 1237947038254117513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_75
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 9
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 326af340435d97fd0800000000000000
+      internalID: -2343607711683336669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_76
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 9
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbf2422d88c069d0800000000000000
+      internalID: -2783004061224207404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_77
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 9
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb748eeb7384eca50800000000000000
+      internalID: 6543246712879204284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_78
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 9
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adc0b35fd57dfe850800000000000000
+      internalID: 6408577593317723354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_79
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 9
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197dd01af4e9f3fe0800000000000000
+      internalID: -1207072110270359663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_80
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 9
+        width: 4
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acad220dc8dc407c0800000000000000
+      internalID: -4105930955583989046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_81
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 9
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb00748b5515924d0800000000000000
+      internalID: -3158904235017961285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_82
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 9
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f8f1ae8c5149a70800000000000000
+      internalID: 8832708721845964650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_83
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 9
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339e96d0e8c36a440800000000000000
+      internalID: 4946707821521135923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton-test3_84
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 9
+        width: 19
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4af32efc0a88b7300800000000000000
+      internalID: 250944428513050532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -30,7 +30,6 @@ public class TileMapGenerator : MonoBehaviour
     private Vector3Int playerSpawn;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
