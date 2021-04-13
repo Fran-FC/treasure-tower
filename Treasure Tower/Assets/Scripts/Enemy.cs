@@ -163,6 +163,7 @@ public class Enemy : MonoBehaviour
             // set flag to indicate we can pick up item 
             hp--;
             if (hp == 0) {
+                //Animate death
                 Destroy(gameObject);
             }
         }
