@@ -27,8 +27,6 @@ public class Player : MonoBehaviour
     }
     CharLifeStates lifeState;
 
-
-
     void Start()
     {
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
@@ -54,13 +52,12 @@ public class Player : MonoBehaviour
         }
         // grid movement logic
         CalcMovement();
-        CalcAction();
     }
     void CalcMovement(){
         CharWalkStates state = prevWalkState;
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed*Time.deltaTime);
-
+    
         if(Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
         {
             if ( Mathf.Abs(movement.x) == 1f)
@@ -117,10 +114,7 @@ public class Player : MonoBehaviour
         spriteRenderer.flipX = flip;
     }
 
-    private void CalcAction(){
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
+/*     private void OnTriggerEnter2D(Collider2D other) {
         // logic for recieving damage or recoverying health
         
         if(other.gameObject.CompareTag("Enemy")) {
@@ -154,10 +148,31 @@ public class Player : MonoBehaviour
         animator.SetInteger("HealthState", (int)lifeState);
     }
     private void OnCollisionStay2D(Collision2D other) {
-        Debug.Log(lifes);
         if(other.gameObject.CompareTag("Enemy")){
             lifes--;
         }
+        switch (lifes)
+        {
+            case 3:
+                lifeState = CharLifeStates.full;
+                break;
+            case 2:
+                lifeState = CharLifeStates.half;
+                break;
+            case 1:
+                lifeState = CharLifeStates.nacked;
+                break;
+            default:
+                lifeState = CharLifeStates.dead;
+                transform.gameObject.SetActive(false);
+                break;
+        }
+        // update sprite and animations
+        animator.SetInteger("HealthState", (int)lifeState);
+    }
+ */
+    public void Damage(){
+        lifes--;
         switch (lifes)
         {
             case 3:

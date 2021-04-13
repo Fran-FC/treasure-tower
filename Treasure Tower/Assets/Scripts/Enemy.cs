@@ -5,6 +5,7 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
+    public Transform movePoint;
     private TileMapGenerator mapGridInfo;
     private Vector3 siguienteMovimiento;
     public bool armor;
@@ -36,6 +37,8 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         whichEnemy = new System.Random().Next(0, 3);
         InitSprite();
+
+        movePoint.parent = null;
     }
 
     void InitSprite()
@@ -71,9 +74,10 @@ public class Enemy : MonoBehaviour
             ///if (CanWalk())
             //{
                 siguienteMovimiento = CalcPath();
+                //this.transform.position += siguienteMovimiento;
                 animator.SetInteger("WalkState", 1);
-                this.transform.position += siguienteMovimiento;
-                animator.SetInteger("WalkState", 0);
+                movePoint.position += siguienteMovimiento;
+                // ToDo : pintar siguiente movePoint
             //}
         }
         //TD
@@ -81,14 +85,25 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
+        Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
         float nuevaX = Math.Sign(aux.x) * -1;
         if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
         spriteRenderer.flipX = isFlippedX;
+
+        // move towards movepoint
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime );
+        if(Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
+        {
+            animator.SetInteger("WalkState", 0);
+        }
     }
 
     private void CalcInRange()
     {
+        /**
+        if(Vector3.Distance(player.transform.position, transform.position) <= 1.05f){
+
+        }**/
         if(player.transform.position.x == this.transform.position.x && (player.transform.position.y == this.transform.position.y - 1 || player.transform.position.y == this.transform.position.y + 1))
         {
             inRange = true;
@@ -104,11 +119,12 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         //TD
+        player.GetComponent<Player>().Damage();
     }
     private Vector3 CalcPath()
     {
         //orientation = new Vector2(0, 0);
-        animator.SetInteger("WalkState", 1);
+        // ToDO: check player distance
         Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
         float nuevaX = Math.Sign(aux.x) * -1;
         if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
