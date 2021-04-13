@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject player;
     private bool isFlippedX = false;
+    private bool walking = false;
     private bool isFlippedY = false;
 
     // Start is called before the first frame update
@@ -52,12 +53,10 @@ public class Enemy : MonoBehaviour
     }
     private void Awake()
     {
-        Messenger.AddListener(GameEvent.MOVED, OnMyTurn);
         Messenger.AddListener(GameEvent.MOVE_ORDER, OnMyTurn);
     }
     private void OnDestroy()
     {
-        Messenger.RemoveListener(GameEvent.MOVED, OnMyTurn);
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
 
     }
@@ -75,8 +74,11 @@ public class Enemy : MonoBehaviour
             //{
                 siguienteMovimiento = CalcPath();
                 //this.transform.position += siguienteMovimiento;
-                animator.SetInteger("WalkState", 1);
                 movePoint.position += siguienteMovimiento;
+                if(animator.GetInteger("WalkState") == 0)
+                {
+                    animator.SetInteger("WalkState", 1);
+                }
                 // ToDo : pintar siguiente movePoint
             //}
         }
