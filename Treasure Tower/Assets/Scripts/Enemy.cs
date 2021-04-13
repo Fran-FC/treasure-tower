@@ -183,6 +183,7 @@ public class Enemy : MonoBehaviour
         hp--;
         if (hp == 0) {
             Destroy(gameObject);
+
         }
         animator.SetBool("Damage", false);
     }
