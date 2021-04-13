@@ -50,6 +50,10 @@ public class Player : MonoBehaviour
         {
             skipTurn = true;
         }
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            Messenger.Broadcast("SPAWN_ENEMY");
+        }
         // grid movement logic
         CalcMovement();
     }
@@ -114,65 +118,25 @@ public class Player : MonoBehaviour
         spriteRenderer.flipX = flip;
     }
 
-/*     private void OnTriggerEnter2D(Collider2D other) {
-        // logic for recieving damage or recoverying health
-        
-        if(other.gameObject.CompareTag("Enemy")) {
-            lifes--;
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Armor")){
+            if(lifes < 3){
+                lifes++;
+                UpdateLifeState();
+                other.gameObject.SetActive(false);
+            }
         }
-        else if(other.gameObject.CompareTag("Armor")){
-            lifes++;
+        if(other.CompareTag("Enemy")){
+            Damage();
         }
-        
-        // MAX LIFES = 3
-        if(lifes > 3)
-            lifes = 3;
-
-        switch (lifes)
-        {
-            case 3:
-                lifeState = CharLifeStates.full;
-                break;
-            case 2:
-                lifeState = CharLifeStates.half;
-                break;
-            case 1:
-                lifeState = CharLifeStates.nacked;
-                break;
-            default:
-                lifeState = CharLifeStates.dead;
-                transform.gameObject.SetActive(false);
-                break;
-        }
-        // update sprite and animations
-        animator.SetInteger("HealthState", (int)lifeState);
-    }
-    private void OnCollisionStay2D(Collision2D other) {
-        if(other.gameObject.CompareTag("Enemy")){
-            lifes--;
-        }
-        switch (lifes)
-        {
-            case 3:
-                lifeState = CharLifeStates.full;
-                break;
-            case 2:
-                lifeState = CharLifeStates.half;
-                break;
-            case 1:
-                lifeState = CharLifeStates.nacked;
-                break;
-            default:
-                lifeState = CharLifeStates.dead;
-                transform.gameObject.SetActive(false);
-                break;
-        }
-        // update sprite and animations
-        animator.SetInteger("HealthState", (int)lifeState);
-    }
- */
+    } 
     public void Damage(){
         lifes--;
+        UpdateLifeState();
+    }
+
+    private void UpdateLifeState()
+    {
         switch (lifes)
         {
             case 3:
@@ -189,7 +153,9 @@ public class Player : MonoBehaviour
                 transform.gameObject.SetActive(false);
                 break;
         }
-        // update sprite and animations
+
+
         animator.SetInteger("HealthState", (int)lifeState);
+
     }
 }

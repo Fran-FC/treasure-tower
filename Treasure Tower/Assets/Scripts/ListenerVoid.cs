@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ListenerVoid : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Awake() {
+        Messenger.AddListener(GameEvent.MOVE_ORDER, Nothing);
+    }
+    private void OnDestroy() {
+        Messenger.RemoveListener(GameEvent.MOVE_ORDER, Nothing);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private void Nothing(){}
 }

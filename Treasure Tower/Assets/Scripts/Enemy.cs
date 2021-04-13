@@ -6,17 +6,20 @@ using System;
 public class Enemy : MonoBehaviour
 {
     public Transform movePoint;
+    public float thrust = 3f;
+    float knockTime = 0.2f;
     private TileMapGenerator mapGridInfo;
     private Vector3 siguienteMovimiento;
     public bool armor;
     public float moveSpeed;
-    public Vector2 orientation = new Vector2(0,0);
+    public Vector2 orientation = new Vector2(0, 0);
     private bool inRange = false;
     [SerializeField]
     private GameObject player;
     private bool isFlippedX = false;
     private bool walking = false;
     private bool isFlippedY = false;
+    public int hp = 1;
 
     // Start is called before the first frame update
     /*enum WhichEnemy
@@ -30,9 +33,12 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    Rigidbody2D rigidbody;
+
     void Start()
     {
         //player = GetComponent<Player>();
+        rigidbody = GetComponent<Rigidbody2D>();
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -68,18 +74,19 @@ public class Enemy : MonoBehaviour
         if (inRange)
         {
             Attack();
-        } else
+        }
+        else
         {
             ///if (CanWalk())
             //{
-                siguienteMovimiento = CalcPath();
-                //this.transform.position += siguienteMovimiento;
-                movePoint.position += siguienteMovimiento;
-                if(animator.GetInteger("WalkState") == 0)
-                {
-                    animator.SetInteger("WalkState", 1);
-                }
-                // ToDo : pintar siguiente movePoint
+            siguienteMovimiento = CalcPath();
+            //this.transform.position += siguienteMovimiento;
+            movePoint.position += siguienteMovimiento;
+            if (animator.GetInteger("WalkState") == 0)
+            {
+                animator.SetInteger("WalkState", 1);
+            }
+            // ToDo : pintar siguiente movePoint
             //}
         }
         //TD
@@ -93,8 +100,8 @@ public class Enemy : MonoBehaviour
         spriteRenderer.flipX = isFlippedX;
 
         // move towards movepoint
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime );
-        if(Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
         {
             animator.SetInteger("WalkState", 0);
         }
@@ -106,13 +113,15 @@ public class Enemy : MonoBehaviour
         if(Vector3.Distance(player.transform.position, transform.position) <= 1.05f){
 
         }**/
-        if(player.transform.position.x == this.transform.position.x && (player.transform.position.y == this.transform.position.y - 1 || player.transform.position.y == this.transform.position.y + 1))
+        if (player.transform.position.x == this.transform.position.x && (player.transform.position.y == this.transform.position.y - 1 || player.transform.position.y == this.transform.position.y + 1))
         {
             inRange = true;
-        } else 
-            if(player.transform.position.y == this.transform.position.y && (player.transform.position.x == this.transform.position.x - 1 || player.transform.position.x == this.transform.position.x + 1)) {
+        }
+        else
+            if (player.transform.position.y == this.transform.position.y && (player.transform.position.x == this.transform.position.x - 1 || player.transform.position.x == this.transform.position.x + 1))
+        {
             inRange = true;
-                } 
+        }
         else
         {
             inRange = false;
@@ -139,15 +148,51 @@ public class Enemy : MonoBehaviour
 
         float nuevaY = Math.Sign(aux.y) * -1;
         return new Vector3(0f, nuevaY, 0f);
-        
+
     }
-   /*private bool CanWalk()
+    /*private bool CanWalk()
+     {
+         bool canWalk = false;
+         if(mapGridInfo.isTileWalkable(this.transform.position.x-1,0) || mapGridInfo.isTileWalkable(this.transform.position.x + 1, 0) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1))
+         {
+             canWalk = true;
+         }
+         return canWalk;
+     }*/
+
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        bool canWalk = false;
-        if(mapGridInfo.isTileWalkable(this.transform.position.x-1,0) || mapGridInfo.isTileWalkable(this.transform.position.x + 1, 0) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1))
+        if (other.CompareTag("Item"))
         {
-            canWalk = true;
+            // animation of damage
+            // knockback
+            rigidbody.isKinematic = false;            
+            Vector2 diff =  rigidbody.transform.position - other.transform.position;
+            diff = diff.normalized * thrust;
+            rigidbody.AddForce(diff, ForceMode2D.Impulse);
+
+            StartCoroutine("KnockCo");
+            
+            animator.SetBool("Damage", true);
+            Invoke("RecieveDamage", 0.4f);
         }
-        return canWalk;
-    }*/
+
+    }
+    private void RecieveDamage(){
+        hp--;
+        if (hp == 0) {
+            Destroy(gameObject);
+
+        }
+        animator.SetBool("Damage", false);
+    }
+
+    private IEnumerator KnockCo(){
+        yield return new WaitForSeconds(knockTime);
+
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.isKinematic = true;
+    }
+
 }
