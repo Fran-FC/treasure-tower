@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -35,6 +36,9 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField]
     private List<GameObject> objectTypesList;
 
+    [SerializeField]
+    private CinemachineVirtualCamera cam;
+
 
     private void Awake()
     {
@@ -66,7 +70,7 @@ public class TileMapGenerator : MonoBehaviour
         playerSpawn = mapInfo.getPlayerSpawn();
         Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
 
-        Instantiate(player, center, Quaternion.identity);
+        cam.Follow = Instantiate(player, center, Quaternion.identity).transform;
 
         spawnObjects();
     }
@@ -95,7 +99,6 @@ public class TileMapGenerator : MonoBehaviour
             GameObject enemyPrefab = enemyTypesList[enemy.enemyType];
 
             Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
-
         }
     }
 
