@@ -6,6 +6,8 @@ using System;
 public class Enemy : MonoBehaviour
 {
     public Transform movePoint;
+    public float thrust = 3f;
+    float knockTime = 0.2f;
     private TileMapGenerator mapGridInfo;
     private Vector3 siguienteMovimiento;
     public bool armor;
@@ -31,9 +33,12 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    Rigidbody2D rigidbody;
+
     void Start()
     {
         //player = GetComponent<Player>();
+        rigidbody = GetComponent<Rigidbody2D>();
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -160,14 +165,33 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            // set flag to indicate we can pick up item 
-            hp--;
-            if (hp == 0) {
-                //Animate death
-                Destroy(gameObject);
-            }
+            // animation of damage
+            // knockback
+            rigidbody.isKinematic = false;            
+            Vector2 diff =  rigidbody.transform.position - other.transform.position;
+            diff = diff.normalized * thrust;
+            rigidbody.AddForce(diff, ForceMode2D.Impulse);
+
+            StartCoroutine("KnockCo");
+            
+            animator.SetBool("Damage", true);
+            Invoke("RecieveDamage", 0.4f);
         }
 
+    }
+    private void RecieveDamage(){
+        hp--;
+        if (hp == 0) {
+            Destroy(gameObject);
+        }
+        animator.SetBool("Damage", false);
+    }
+
+    private IEnumerator KnockCo(){
+        yield return new WaitForSeconds(knockTime);
+
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.isKinematic = true;
     }
 
 }

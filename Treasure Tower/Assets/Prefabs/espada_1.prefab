@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6935512999458150910}
   - component: {fileID: 6935512999458150907}
   - component: {fileID: 6935512999458150908}
+  - component: {fileID: 5179834690314935978}
   m_Layer: 0
   m_Name: espada_1
   m_TagString: Item
@@ -97,7 +98,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012390375, y: 0.04336655}
+  m_Offset: {x: -0.004288316, y: 0.13017488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -108,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6282859, y: 0.87609506}
+  m_Size: {x: 0.24169946, y: 0.62377214}
   m_EdgeRadius: 0
 --- !u!50 &6935512999458150908
 Rigidbody2D:
@@ -131,3 +132,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &5179834690314935978
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935512999458150911}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.004629731, y: 0.12847626}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.23608708, y: 0.6273029}
+  m_EdgeRadius: 0
