@@ -170,6 +170,9 @@ public class MapInfo
 
         map[(int)map.GetLength(0) / 2, 1] = new GridInfo((int)TileTypes.FLOOR, true);
 
+
+        map[4, map.GetLength(1) - 3] = new GridInfo((int)TileTypes.FLOOR, false, false, 0, true, 1);
+
         map[3, map.GetLength(1) - 2] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
         map[map.GetLength(0) - 3, map.GetLength(1) - 2] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
     }
