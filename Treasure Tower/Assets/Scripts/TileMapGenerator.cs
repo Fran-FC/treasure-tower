@@ -40,6 +40,9 @@ public class TileMapGenerator : MonoBehaviour
     private CinemachineVirtualCamera cam;
 
 
+    [SerializeField]
+    private bool colorNotWalkableTiles = false;
+
     private void Awake()
     {
         Messenger.AddListener(GameEvent.SPAWN_ENEMY, spawnEnemies);
@@ -78,7 +81,9 @@ public class TileMapGenerator : MonoBehaviour
 
     private void Update()
     {
-        mapInfo.markNonWalkableTiles(tilemap);
+        if (colorNotWalkableTiles) { 
+            mapInfo.markNonWalkableTiles(tilemap);
+        }
     }
 
 

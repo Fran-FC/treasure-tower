@@ -628,5 +628,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 683537342126669423, guid: 3cb69b3eb77e7234fbcdb6e71578b9bd,
         type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: colorNotWalkableTiles
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134a03b760ebd0a4c99cf0e80118c072, type: 3}
