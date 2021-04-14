@@ -81,7 +81,17 @@ public class Enemy : MonoBehaviour
             //{
             siguienteMovimiento = CalcPath();
             //this.transform.position += siguienteMovimiento;
-            movePoint.position += siguienteMovimiento;
+
+            Vector3 newPoint = movePoint.position + siguienteMovimiento;
+
+            if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y)) {
+                mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
+                movePoint.position += siguienteMovimiento;
+                mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+            }
+
+            
+
             if (animator.GetInteger("WalkState") == 0)
             {
                 animator.SetInteger("WalkState", 1);
@@ -140,6 +150,10 @@ public class Enemy : MonoBehaviour
         float nuevaX = Math.Sign(aux.x) * -1;
         if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
         spriteRenderer.flipX = isFlippedX;
+
+        Debug.Log("Call to CalcPath " + aux);
+
+
         if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0) && Mathf.Abs(aux.x) > Mathf.Abs(aux.y))
         {
             orientation.x = nuevaX;
@@ -167,21 +181,25 @@ public class Enemy : MonoBehaviour
         {
             // animation of damage
             // knockback
-            rigidbody.isKinematic = false;            
-            Vector2 diff =  rigidbody.transform.position - other.transform.position;
-            diff = diff.normalized * thrust;
-            rigidbody.AddForce(diff, ForceMode2D.Impulse);
+            if (other.gameObject.transform.parent != null) {
+                rigidbody.isKinematic = false;
+                Vector2 diff = rigidbody.transform.position - other.transform.position;
+                diff = diff.normalized * thrust;
+                rigidbody.AddForce(diff, ForceMode2D.Impulse);
 
-            StartCoroutine("KnockCo");
-            
-            animator.SetBool("Damage", true);
-            Invoke("RecieveDamage", 0.4f);
+                StartCoroutine("KnockCo");
+
+                animator.SetBool("Damage", true);
+                Invoke("RecieveDamage", 0.4f);
+            }
         }
 
     }
     private void RecieveDamage(){
         hp--;
         if (hp == 0) {
+
+            mapGridInfo.setTileWalkableState(gameObject.transform.position.x, gameObject.transform.position.y, true);
             Destroy(gameObject);
 
         }

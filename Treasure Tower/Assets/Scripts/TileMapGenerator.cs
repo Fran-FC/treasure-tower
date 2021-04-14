@@ -76,6 +76,11 @@ public class TileMapGenerator : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        mapInfo.markNonWalkableTiles(tilemap);
+    }
+
 
     public bool isTileWalkable(float v_x, float v_y) {
 
@@ -86,6 +91,15 @@ public class TileMapGenerator : MonoBehaviour
         return mapInfo.isTileWalkable(cellPos.x, cellPos.y);
     }
 
+    public void setTileWalkableState(float v_x, float v_y, bool isWalkable) {
+        int x = (int)Mathf.Floor(v_x);
+        int y = (int)Mathf.Floor(v_y);
+
+        Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x, y, 0));
+        mapInfo.setTileWalkableState(cellPos.x, cellPos.y, isWalkable);
+    }
+
+   
 
     public void spawnEnemies() {
         List<EnemyInfo> enemies = mapInfo.getEnemiesList();
@@ -206,7 +220,34 @@ public class MapInfo
 
     public bool isTileWalkable(int x, int y) {
         return map[x, y].walkable;
-    } 
+    }
+
+
+    public void markNonWalkableTiles(Tilemap tilemap)
+    {
+
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            for (int j = 0; j < map.GetLength(1); j++)
+            {
+                GridInfo info = map[i, j];
+
+                if (!info.walkable)
+                {
+                    tilemap.SetTileFlags(new Vector3Int(i, j, 0), TileFlags.None);
+                    tilemap.SetColor(new Vector3Int(i, j, 0), Color.red);
+                }
+                else {
+                    tilemap.SetTileFlags(new Vector3Int(i, j, 0), TileFlags.None);
+                    tilemap.SetColor(new Vector3Int(i, j, 0), Color.yellow);
+                }
+            }
+        }
+    }
+
+    public void setTileWalkableState(int x, int y, bool isWalkable) {
+        map[x, y].walkable = isWalkable;
+    }
 }
 
 

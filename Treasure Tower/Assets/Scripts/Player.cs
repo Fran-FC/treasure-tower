@@ -67,10 +67,14 @@ public class Player : MonoBehaviour
             if ( Mathf.Abs(movement.x) == 1f)
             {
                 Vector3 cachePos = movePoint.position;
+                Vector3 oldPos = cachePos;
                 cachePos += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
 
                 if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                    mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
+                    mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
+
                     if (movement.x > 0f)
                     {
                         prevWalkState = CharWalkStates.walk;
@@ -97,10 +101,13 @@ public class Player : MonoBehaviour
             {
 
                 Vector3 cachePos = movePoint.position;
+                Vector3 oldPos = cachePos;
                 cachePos += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
 
                 if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                    mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
+                    mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
                     prevWalkState = CharWalkStates.walk;
 
                     // if we moved, send event for moving
