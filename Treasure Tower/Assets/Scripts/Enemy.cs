@@ -6,10 +6,12 @@ using System;
 public class Enemy : MonoBehaviour
 {
     public Transform movePoint;
+    public Transform warn;
     public float thrust = 3f;
     float knockTime = 0.2f;
     private TileMapGenerator mapGridInfo;
     private Vector3 siguienteMovimiento;
+    private Vector3 newPoint;
     public bool armor;
     public float moveSpeed;
     public Vector2 orientation = new Vector2(0, 0);
@@ -18,8 +20,12 @@ public class Enemy : MonoBehaviour
     private GameObject player;
     private bool isFlippedX = false;
     private bool walking = false;
+    private bool turn = true;
     private bool isFlippedY = false;
+    private bool attackTurn = false;
+    private bool knockback = false;
     public int hp = 1;
+
 
     // Start is called before the first frame update
     /*enum WhichEnemy
@@ -64,11 +70,15 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
+        Destroy(movePoint.gameObject);
 
     }
 
     private void OnMyTurn()
     {
+        turn = true;
+        attackTurn = true;
+
         player = GameObject.FindWithTag("Player");
         CalcInRange();
         if (inRange)
@@ -77,44 +87,69 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            ///if (CanWalk())
-            //{
-            siguienteMovimiento = CalcPath();
-            //this.transform.position += siguienteMovimiento;
-
-            Vector3 newPoint = movePoint.position + siguienteMovimiento;
+            newPoint = movePoint.position + siguienteMovimiento;
 
             if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0) {
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
-                movePoint.position += siguienteMovimiento;
+                movePoint.position = newPoint;
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+
             }
-
             
-
             if (animator.GetInteger("WalkState") == 0)
             {
                 animator.SetInteger("WalkState", 1);
             }
-            // ToDo : pintar siguiente movePoint
-            //}
         }
-        //TD
-
     }
     void Update()
     {
-        Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
-        float nuevaX = Math.Sign(aux.x) * -1;
-        if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
-        spriteRenderer.flipX = isFlippedX;
 
-        // move towards movepoint
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
-        {
-            animator.SetInteger("WalkState", 0);
+        if(!knockback){
+            // calculate path and paint next move
+            if(!walking && turn)
+            {
+                turn = false;
+                siguienteMovimiento = CalcPath();
+                newPoint = movePoint.position + siguienteMovimiento;
+
+                warn.localPosition = siguienteMovimiento;
+                //ShowWarnTile(true);
+            }
+
+            Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
+            float nuevaX = Math.Sign(aux.x) * -1;
+            if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
+            spriteRenderer.flipX = isFlippedX;
+
+            // move towards movepoint
+            transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+            //warn.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            walking = true;
+            if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
+            {
+                walking = false;
+                animator.SetInteger("WalkState", 0);
+            }
+            ShowWarnTile(!walking);
+
+        } else {
+            // remove next tile mark
+            ShowWarnTile(false);
+            transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime * 2);
+            if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
+            {
+                knockback = false;
+            }
+
         }
+    }
+
+    private void ShowWarnTile(bool show){
+        Vector3 hidden = new Vector3(warn.position.x, warn.position.y, 1f);
+        Vector3 nothidden = new Vector3(warn.position.x, warn.position.y, 0f);
+
+        warn.position = show ? nothidden : hidden;
     }
 
     private void CalcInRange()
@@ -140,8 +175,10 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         //TD
-        if(hp>0)
+        if(hp>0 && attackTurn){
+            attackTurn = false;
             player.GetComponent<Player>().Damage();
+        }
     }
     private Vector3 CalcPath()
     {
@@ -180,21 +217,20 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            Debug.Log("OUCH!");
-            // animation of damage
-            // knockback
             if (other.gameObject.transform.parent != null) {
-                rigidbody.isKinematic = false;
-                Vector2 diff = rigidbody.transform.position - other.transform.position;
-                diff = diff.normalized * thrust;
-                rigidbody.AddForce(diff, ForceMode2D.Impulse);
-
-                StartCoroutine("KnockCo");
+                hp--;
+//                rigidbody.isKinematic = false;
+//                Vector2 diff = rigidbody.transform.position - other.transform.position;
+//                diff = diff.normalized * thrust;
+//                rigidbody.AddForce(diff, ForceMode2D.Impulse);
+//
+//                StartCoroutine("KnockCo");
+                // knockback
+                KnockBack(other.gameObject.transform.position);
 
                 animator.SetBool("Damage", true);
                 
                 // recieve damage first
-                hp--;
                 Invoke("HandleDamage", 0.4f);
             }
         }
@@ -202,17 +238,38 @@ public class Enemy : MonoBehaviour
     }
     private void HandleDamage(){
         if (hp <= 0) {
-            mapGridInfo.setTileWalkableState(gameObject.transform.position.x, gameObject.transform.position.y, true);
             Destroy(gameObject);
+            mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
         }
         animator.SetBool("Damage", false);
     }
 
-    private IEnumerator KnockCo(){
-        yield return new WaitForSeconds(knockTime);
+    private void KnockBack(Vector3 weaponPosition){
+        knockback = true;
+        //calc position knockback
+        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
+        Vector3 distance =  transform.position - weaponPosition;
 
-        rigidbody.velocity = Vector2.zero;
-        rigidbody.isKinematic = true;
+        Debug.Log(distance.x);
+        Debug.Log(distance.y);
+        if(distance.x > 0.1f){
+            distance.x = -1f;
+        }else if(distance.x < -0.1f){
+            Debug.Log(distance.x);
+            distance.x = 1f;
+        }if(distance.y > 0.1f){
+            distance.y = -1f;
+        }
+        else if(distance.y < -0.1f){
+            distance.y = 1f;
+        }
+
+        Debug.Log(distance);
+        Vector3 newPoint = movePoint.position - distance;
+        if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y)) {
+            mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
+            movePoint.position = newPoint;
+            mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+        }
     }
-
 }
