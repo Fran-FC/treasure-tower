@@ -184,7 +184,7 @@ public class MapInfo
 
     public void drawTileMap(Tilemap tm, List<Tile> tileList) {
 
-        Debug.Log("Map Size x: " + map.GetLength(0) + " y: " + map.GetLength(1));
+//        Debug.Log("Map Size x: " + map.GetLength(0) + " y: " + map.GetLength(1));
 
         for (int i = 0; i < map.GetLength(0); i++)
         {

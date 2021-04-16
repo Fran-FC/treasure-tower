@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
 
             Vector3 newPoint = movePoint.position + siguienteMovimiento;
 
-            if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y)) {
+            if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0) {
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
                 movePoint.position += siguienteMovimiento;
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
@@ -140,7 +140,8 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         //TD
-        player.GetComponent<Player>().Damage();
+        if(hp>0)
+            player.GetComponent<Player>().Damage();
     }
     private Vector3 CalcPath()
     {
@@ -151,7 +152,7 @@ public class Enemy : MonoBehaviour
         if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
         spriteRenderer.flipX = isFlippedX;
 
-        Debug.Log("Call to CalcPath " + aux);
+//        Debug.Log("Call to CalcPath " + aux);
 
 
         if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0) && Mathf.Abs(aux.x) > Mathf.Abs(aux.y))
@@ -179,6 +180,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
+            Debug.Log("OUCH!");
             // animation of damage
             // knockback
             if (other.gameObject.transform.parent != null) {
@@ -190,18 +192,18 @@ public class Enemy : MonoBehaviour
                 StartCoroutine("KnockCo");
 
                 animator.SetBool("Damage", true);
-                Invoke("RecieveDamage", 0.4f);
+                
+                // recieve damage first
+                hp--;
+                Invoke("HandleDamage", 0.4f);
             }
         }
 
     }
-    private void RecieveDamage(){
-        hp--;
-        if (hp == 0) {
-
+    private void HandleDamage(){
+        if (hp <= 0) {
             mapGridInfo.setTileWalkableState(gameObject.transform.position.x, gameObject.transform.position.y, true);
             Destroy(gameObject);
-
         }
         animator.SetBool("Damage", false);
     }
