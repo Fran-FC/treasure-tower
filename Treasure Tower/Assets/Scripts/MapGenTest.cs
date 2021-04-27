@@ -49,7 +49,8 @@ public class MapGenTest : MonoBehaviour
     public bool viewRooms;
     public GameObject roomRenderer;
 
-    public Texture2D[] possibleRooms;
+    public Texture2D[] mainRooms;
+    public Texture2D[] initRooms;
 
     //internal data
     private Room[,] map;
@@ -449,10 +450,24 @@ public class MapGenTest : MonoBehaviour
                     string tag = map[i, j].tag;
                     if (tag != null)
                     {
-                        //a room exists in these coordinates
                         GameObject clone = Instantiate(roomRenderer, pos, Quaternion.identity, transform);
                         DebugRoomRendererFromSprite roomSprite = clone.GetComponent<DebugRoomRendererFromSprite>();
-                        roomSprite.room = possibleRooms[rng.Next(possibleRooms.Length)];
+                        switch (tag)
+                        {
+                            case "START":
+                                roomSprite.room = initRooms[rng.Next(initRooms.Length)];
+                                break;
+                            case "MAIN PATH":
+                                roomSprite.room = mainRooms[rng.Next(mainRooms.Length)];
+                                break;
+                            case "END":
+                                roomSprite.room = mainRooms[rng.Next(mainRooms.Length)];
+                                break;
+                            case "OPTIONAL":
+                                roomSprite.room = mainRooms[rng.Next(mainRooms.Length)];
+                                break;
+                        }
+                        //a room exists in these coordinates
                         roomSprite.populateColorMap(ref colorMap, j, i);
                     }
                 }
