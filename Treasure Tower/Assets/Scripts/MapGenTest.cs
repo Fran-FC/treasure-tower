@@ -49,6 +49,8 @@ public class MapGenTest : MonoBehaviour
     public bool viewRooms;
     public GameObject roomRenderer;
 
+    public Texture2D[] possibleRooms;
+
     //internal data
     private Room[,] map;
     private System.Random rng;
@@ -450,6 +452,7 @@ public class MapGenTest : MonoBehaviour
                         //a room exists in these coordinates
                         GameObject clone = Instantiate(roomRenderer, pos, Quaternion.identity, transform);
                         DebugRoomRendererFromSprite roomSprite = clone.GetComponent<DebugRoomRendererFromSprite>();
+                        roomSprite.room = possibleRooms[rng.Next(possibleRooms.Length)];
                         roomSprite.populateColorMap(ref colorMap, j, i);
                     }
                 }
