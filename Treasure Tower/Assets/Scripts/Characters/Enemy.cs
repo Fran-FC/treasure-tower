@@ -88,12 +88,13 @@ public class Enemy : MonoBehaviour
         {
             newPoint = movePoint.position + siguienteMovimiento;
 
-            if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0) {
+            if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
+            {
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
                 movePoint.position = newPoint;
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
             }
-            
+
             if (animator.GetInteger("WalkState") == 0)
             {
                 animator.SetInteger("WalkState", 1);
@@ -188,6 +189,12 @@ public class Enemy : MonoBehaviour
 
     }
 
+    private bool isPlayerNearby() {
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        Debug.Log(distance);
+        return distance <= 10.0f;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -202,6 +209,7 @@ public class Enemy : MonoBehaviour
         }
 
     }
+    
     private void HandleDamage(){
         if (hp <= 0) {
             Destroy(gameObject);
