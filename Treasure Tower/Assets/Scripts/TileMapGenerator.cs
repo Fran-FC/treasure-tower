@@ -83,11 +83,7 @@ public class TileMapGenerator : MonoBehaviour
 
             spawnObjects();
         }
- 
-
-       
     }
-
 
     private void Update()
     {
@@ -165,6 +161,7 @@ public class TileMapGenerator : MonoBehaviour
             cam.Follow = Instantiate(player, center, Quaternion.identity).transform;
         }
 
+        spawnEnemies();
         spawnObjects();
     }
 
