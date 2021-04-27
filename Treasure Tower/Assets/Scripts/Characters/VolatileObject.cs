@@ -13,7 +13,6 @@ public class VolatileObject : MonoBehaviour
             countdown = timeToShow;
             // set active false
             gameObject.SetActive(false);
-            Debug.Log("DISAPEAR");
         }         
     }
     
