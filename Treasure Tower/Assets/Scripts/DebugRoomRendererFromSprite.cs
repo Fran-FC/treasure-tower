@@ -2,6 +2,12 @@
 
 public class DebugRoomRendererFromSprite : MonoBehaviour
 {
+    //defines
+    private const int UP = 0;
+    private const int RIGHT = 1;
+    private const int DOWN = 2;
+    private const int LEFT = 3;
+
     private static int roomH = 15;
     private static int roomW = 20;
     public Texture2D room;
@@ -58,6 +64,43 @@ public class DebugRoomRendererFromSprite : MonoBehaviour
                 colorMap[(h * 15) + y, (w * 20) + x] = pixelColor;
             }
         }
-    } 
+    }
+    
+    public void closeConectionAt(ref Color[,] colorMap, int w, int h, int dir)
+    {
+        switch (dir)
+        {
+            case UP:
+                colorMap[(h * 15) + 14, (w * 20) + 8] = Color.black;
+                colorMap[(h * 15) + 14, (w * 20) + 9] = Color.black;
+                colorMap[(h * 15) + 14, (w * 20) + 10] = Color.black;
+                colorMap[(h * 15) + 14, (w * 20) + 11] = Color.black;
+                
+                colorMap[(h * 15) + 13, (w * 20) + 8] = Color.gray;
+                colorMap[(h * 15) + 13, (w * 20) + 9] = Color.gray;
+                colorMap[(h * 15) + 13, (w * 20) + 10] = Color.gray;
+                colorMap[(h * 15) + 13, (w * 20) + 11] = Color.gray;
+                break;
+            case RIGHT:
+                colorMap[(h * 15) + 6, (w * 20) + 19] = Color.black;
+                colorMap[(h * 15) + 7, (w * 20) + 19] = Color.black;
+                colorMap[(h * 15) + 8, (w * 20) + 19] = Color.black;
+                colorMap[(h * 15) + 9, (w * 20) + 19] = Color.black;
+                break;
+            case DOWN:
+                colorMap[(h * 15), (w * 20) + 8] = Color.black;
+                colorMap[(h * 15), (w * 20) + 9] = Color.black;
+                colorMap[(h * 15), (w * 20) + 10] = Color.black;
+                colorMap[(h * 15), (w * 20) + 11] = Color.black;
+                break;
+            case LEFT:
+                colorMap[(h * 15) + 6, (w * 20)] = Color.black;
+                colorMap[(h * 15) + 7, (w * 20)] = Color.black;
+                colorMap[(h * 15) + 8, (w * 20)] = Color.black;
+                colorMap[(h * 15) + 9, (w * 20)] = Color.black;
+                break;
+
+        }
+    }
 
 }

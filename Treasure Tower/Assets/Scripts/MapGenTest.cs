@@ -469,6 +469,11 @@ public class MapGenTest : MonoBehaviour
                         }
                         //a room exists in these coordinates
                         roomSprite.populateColorMap(ref colorMap, j, i);
+                        for (int dir = 0; dir < 4; dir++)
+                        {
+                            //for each cardinal direction, see if the room has a conection, if not close it on the map
+                            if (!(map[i, j].mainConections[dir] || map[i, j].secondaryConections[dir]))  roomSprite.closeConectionAt(ref colorMap, j, i, dir);
+                        }
                     }
                 }
             }

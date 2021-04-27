@@ -161,7 +161,7 @@ MonoBehaviour:
     type: 3}
   mainRooms:
   - {fileID: 2800000, guid: 6150595a3efdd5a41a32c143323a0eae, type: 3}
-  - {fileID: 2800000, guid: 5ecdda1ef50d3bc4e85e44f3bbfdfb9e, type: 3}
+  - {fileID: 2800000, guid: feb4b9a365a320044bae5e8a81f3ceba, type: 3}
   - {fileID: 2800000, guid: aa1de2130c73da7419ceebc5ed0e64f2, type: 3}
   - {fileID: 2800000, guid: c6ee49ae836180641a7ef20999234b9b, type: 3}
   - {fileID: 2800000, guid: 1cacca636cecbb349bf2ddba8fe86d46, type: 3}
