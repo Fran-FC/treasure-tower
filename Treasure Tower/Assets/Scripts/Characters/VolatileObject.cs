@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VolatileObject : MonoBehaviour
 {
-    publi
     void Start()
     {
         

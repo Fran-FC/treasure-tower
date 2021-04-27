@@ -238,7 +238,7 @@ public class MapInfo
                 }
                 else if (color.Equals(Color.red)) 
                 {
-                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
+                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false, true, Random.Range(0, 2)); // TODO: Fix this cause it sucks
                 }
                 else
                 {

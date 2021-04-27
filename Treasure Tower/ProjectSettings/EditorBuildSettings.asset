@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BaseMapScene.unity
     guid: 1e3e9c53c38d4e74297bd507fc2ab71c
+  - enabled: 1
+    path: Assets/Scenes/ProcMapGen.unity
+    guid: 03ed097056d69a54994ea6a0e313c9c2
   m_configObjects: {}
