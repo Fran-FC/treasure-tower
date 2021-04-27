@@ -140,6 +140,14 @@ public class Player : MonoBehaviour
     public void Damage(){
         lifes--;
         UpdateLifeState();
+        StartCoroutine(FlickerCharacter());
+    }
+    
+    public virtual IEnumerator FlickerCharacter() {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sr.color = Color.white;
     }
 
     private void UpdateLifeState()
