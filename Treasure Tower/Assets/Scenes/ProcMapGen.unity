@@ -645,8 +645,7 @@ MonoBehaviour:
   viewRooms: 1
   roomRenderer: {fileID: 8636872920474844720, guid: e31aa48c830f99e4aad5cc1121719f9a,
     type: 3}
-  possibleRooms:
-  - {fileID: 2800000, guid: 25f27cb5d12cda74da1cb9800a1ddabd, type: 3}
+  mainRooms:
   - {fileID: 2800000, guid: 6150595a3efdd5a41a32c143323a0eae, type: 3}
   - {fileID: 2800000, guid: feb4b9a365a320044bae5e8a81f3ceba, type: 3}
   - {fileID: 2800000, guid: aa1de2130c73da7419ceebc5ed0e64f2, type: 3}
@@ -657,3 +656,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: da7732c722722054682a9d21ea477d49, type: 3}
   - {fileID: 2800000, guid: d5e5a7374ea133946a865a18077a90ac, type: 3}
   - {fileID: 2800000, guid: 0b38eedf1790ece4b8933c924307fac2, type: 3}
+  - {fileID: 2800000, guid: 25f27cb5d12cda74da1cb9800a1ddabd, type: 3}
+  initRooms:
+  - {fileID: 2800000, guid: c19bd81edf31f334e99c856c1bbd8de6, type: 3}
