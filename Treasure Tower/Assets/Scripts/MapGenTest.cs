@@ -46,10 +46,18 @@ public class MapGenTest : MonoBehaviour
     public string seed;
     public bool randomSeed;
 
+    public bool viewRooms;
+    public GameObject roomRenderer;
+
     //internal data
     private Room[,] map;
     private System.Random rng;
     private Stack<(int, int)> path; //main path stack, it's a list cuz I need to peep inside to search for rooms in a determined place on the map
+
+    //MATRIZ DE COLORES - ###########################################################################################
+    [HideInInspector]
+    public Color[,] colorMap;
+    //###############################################################################################################
 
     //temp
     private int startH, startW;
@@ -60,6 +68,7 @@ public class MapGenTest : MonoBehaviour
         setup();
         findMainPath();
         placeSecondaryRooms();
+        if (viewRooms) drawRoomGizmos();
     }
 
     private void setup()
@@ -73,6 +82,21 @@ public class MapGenTest : MonoBehaviour
         //setup random number generator
         if (randomSeed) seed = System.DateTime.Now.Ticks.ToString();
         rng = new System.Random(seed.GetHashCode());
+
+        //initialize the colorMap
+        colorMap = new Color[height * 15, width * 20];
+        initializeColorMap();
+    }
+
+    private void initializeColorMap()
+    {
+        //setup all colors on the map to transparent
+        for (int i = 0; i < colorMap.GetLength(0); i++){
+            for(int j = 0; j < colorMap.GetLength(1); j++)
+            {
+                colorMap[i, j] = Color.black;
+            }
+        }
     }
 
     private void findMainPath()
@@ -335,6 +359,30 @@ public class MapGenTest : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!viewRooms) drawMapGizmos();
+        else
+        {
+            //see if the matrix is populated well
+            for (int i = 0; i < colorMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < colorMap.GetLength(1); j++)
+                {
+                    Vector3 pos = new Vector3(-(width * 20) / 2 + j + .5f, -(height * 15) / 2 + i + .5f, 0);
+                    Color pixelColor = colorMap[i, j];
+                    if (pixelColor.a == 0)
+                    {
+                        //the pixel is transparent, so we do nothing
+                        continue;
+                    }
+                    Gizmos.color = pixelColor;
+                    Gizmos.DrawCube(transform.position + pos, Vector3.one);
+                }
+            }
+        }
+    }
+
+    private void drawMapGizmos()
+    {
         if (map != null)
         {
             for (int i = 0; i < height; i++)
@@ -372,8 +420,31 @@ public class MapGenTest : MonoBehaviour
                     {
                         Gizmos.color = Color.grey;
                     }
-                    
-                    Gizmos.DrawCube(pos, Vector3.one/2);
+
+                    Gizmos.DrawCube(pos, Vector3.one / 2);
+                }
+            }
+        }
+    }
+
+    private void drawRoomGizmos()
+    {
+        if (map != null)
+        {
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    //for each space on map
+                    Vector3 pos = new Vector3(-(width*20) / 2 + (j*20) + .5f, -(height*15) / 2 + (i*15) + .5f, 0);
+                    string tag = map[i, j].tag;
+                    if (tag != null)
+                    {
+                        //a room exists in these coordinates
+                        GameObject clone = Instantiate(roomRenderer, pos, Quaternion.identity, transform);
+                        DebugRoomRendererFromSprite roomSprite = clone.GetComponent<DebugRoomRendererFromSprite>();
+                        roomSprite.populateColorMap(ref colorMap, j, i);
+                    }
                 }
             }
         }
