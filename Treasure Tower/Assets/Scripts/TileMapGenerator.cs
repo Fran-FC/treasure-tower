@@ -10,8 +10,8 @@ enum TileTypes {
     WALL,
     FLOOR,
     OBJECT,
-    SWORD,
     EMPTY,
+    WALL_TOP
 }
 
 public class TileMapGenerator : MonoBehaviour
@@ -227,18 +227,25 @@ public class MapInfo
 
                 Color color = colorMap[j, i];
 
-                if (j == 0 || j == map.GetLength(1) - 1 || i == 0 || i == map.GetLength(0) - 1)
+                if (color.Equals(Color.black))
                 {
-                    map[i, j] = new GridInfo((int)TileTypes.WALL, false);
+                    map[i, j] = new GridInfo((int)TileTypes.WALL_TOP, false);
                 }
-                else if (color.Equals(Color.black)) {
-                    map[i, j] = new GridInfo((int)TileTypes.WALL, false);
-                }
-                else if (color.Equals(Color.blue)) {
+                else if (color.Equals(Color.blue))
+                {
                     map[i, j] = new GridInfo((int)TileTypes.FLOOR, true);
                 }
-                else {
+                else if (color.Equals(Color.white))
+                {
                     map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
+                }
+                else if (color.Equals(Color.red)) 
+                {
+                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
+                }
+                else
+                {
+                    map[i, j] = new GridInfo((int)TileTypes.WALL, false);
                 }
             }
         }

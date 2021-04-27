@@ -190,6 +190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
+      propertyPath: tileList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1440466832}
@@ -198,6 +203,18 @@ PrefabInstance:
       propertyPath: colorNotWalkableTiles
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: tileList.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 32ab961a873365e478dbd46fb4734914,
+        type: 2}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: tileList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0439ca7b5d554c8489976e261279f6bb,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134a03b760ebd0a4c99cf0e80118c072, type: 3}
 --- !u!1 &361166982
