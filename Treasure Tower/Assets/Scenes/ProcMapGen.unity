@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1440466832}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: colorNotWalkableTiles
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134a03b760ebd0a4c99cf0e80118c072, type: 3}
 --- !u!1 &361166982
