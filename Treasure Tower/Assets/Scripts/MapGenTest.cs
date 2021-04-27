@@ -59,16 +59,23 @@ public class MapGenTest : MonoBehaviour
     public Color[,] colorMap;
     //###############################################################################################################
 
+    private TileMapGenerator tileMapGenerator;
+
     //temp
     private int startH, startW;
 
     // Start is called before the first frame update
     void Start() 
     {
+        tileMapGenerator = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         setup();
         findMainPath();
         placeSecondaryRooms();
         if (viewRooms) drawRoomGizmos();
+
+        if (!tileMapGenerator.checkFakeInfo()) { 
+            tileMapGenerator.drawMap(colorMap);
+        }
     }
 
     private void setup()

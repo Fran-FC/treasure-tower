@@ -39,19 +39,22 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera cam;
 
-
     [SerializeField]
     private bool colorNotWalkableTiles = false;
+
+    [SerializeField]
+    private bool useFakeInfo = false;
+
 
     private void Awake()
     {
         Messenger.AddListener(GameEvent.SPAWN_ENEMY, spawnEnemies);
+       
     }
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.SPAWN_ENEMY, spawnEnemies);
     }
-
 
     // Start is called before the first frame update
     void Start()
@@ -61,21 +64,28 @@ public class TileMapGenerator : MonoBehaviour
         tilemap.gameObject.AddComponent<TilemapRenderer>();
 
         tilemap.transform.SetParent(grid.transform);
+       
+        if (useFakeInfo)
+        {
+            tilemap.transform.position = new Vector2(-rows / 2, -cols / 2);
+            mapInfo = new MapInfo(rows, cols);
+            mapInfo.updateMapFakeInfo();
 
+            mapInfo.drawTileMap(tilemap, tileList);
 
-        tilemap.transform.position = new Vector2(-rows / 2, -cols / 2);
+            playerSpawn = mapInfo.getPlayerSpawn();
 
-        mapInfo = new MapInfo(rows, cols);
+            if (playerSpawn != null)
+            {
+                Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
+                cam.Follow = Instantiate(player, center, Quaternion.identity).transform;
+            }
 
-        mapInfo.updateMapFakeInfo();
-        mapInfo.drawTileMap(tilemap, tileList);
+            spawnObjects();
+        }
+ 
 
-        playerSpawn = mapInfo.getPlayerSpawn();
-        Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
-
-        cam.Follow = Instantiate(player, center, Quaternion.identity).transform;
-
-        spawnObjects();
+       
     }
 
 
@@ -137,6 +147,31 @@ public class TileMapGenerator : MonoBehaviour
 
         }
     }
+
+
+    public void drawMap(Color[,] colorMap) {
+
+        tilemap.transform.position = new Vector2(-colorMap.GetLength(0) / 2, -colorMap.GetLength(1) / 2);
+        mapInfo = new MapInfo(colorMap.GetLength(1), colorMap.GetLength(0));
+        mapInfo.generateMapInfo(colorMap);
+
+        mapInfo.drawTileMap(tilemap, tileList);
+
+        playerSpawn = mapInfo.getPlayerSpawn();
+
+        if (playerSpawn != null)
+        {
+            Vector3 center = tilemap.GetCellCenterWorld(playerSpawn);
+            cam.Follow = Instantiate(player, center, Quaternion.identity).transform;
+        }
+
+        spawnObjects();
+    }
+
+    public bool checkFakeInfo() {
+        return this.useFakeInfo;
+    }
+
 }
 
 
@@ -180,6 +215,33 @@ public class MapInfo
 
         map[3, map.GetLength(1) - 2] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
         map[map.GetLength(0) - 3, map.GetLength(1) - 2] = new GridInfo((int)TileTypes.FLOOR, false, true, 0);
+    }
+
+
+    public void generateMapInfo(Color[,] colorMap) {
+
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            for (int j = 0; j < map.GetLength(1); j++)
+            {
+
+                Color color = colorMap[j, i];
+
+                if (j == 0 || j == map.GetLength(1) - 1 || i == 0 || i == map.GetLength(0) - 1)
+                {
+                    map[i, j] = new GridInfo((int)TileTypes.WALL, false);
+                }
+                else if (color.Equals(Color.black)) {
+                    map[i, j] = new GridInfo((int)TileTypes.WALL, false);
+                }
+                else if (color.Equals(Color.blue)) {
+                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, true);
+                }
+                else {
+                    map[i, j] = new GridInfo((int)TileTypes.FLOOR, false);
+                }
+            }
+        }
     }
 
     public void drawTileMap(Tilemap tm, List<Tile> tileList) {
