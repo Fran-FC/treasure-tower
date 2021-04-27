@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trail: {fileID: 1577614368171841309, guid: 9229d58038faca242bf09c11b44eabef, type: 3}
-  poolSize: 5
+  poolSize: 25
 --- !u!1001 &9054034288810267411
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,12 +31,13 @@ public class TailTrail : MonoBehaviour
     
     private void SpawnTrail(Vector3 location) {
         foreach (GameObject t in trailPool) {
-            if(t.activeSelf == true){
-                if(t.transform.position == transform.position) {
-                    return;
-                }
-            }
+            //if(t.activeSelf == true){
+            //    if(t.transform.position == transform.position) {
+            //        return;
+            //    }
+            //}
             if (t.activeSelf == false) {
+                Debug.Log("FUEGUECITO");
                 t.SetActive(true);
                 t.transform.position = location;
                 return;

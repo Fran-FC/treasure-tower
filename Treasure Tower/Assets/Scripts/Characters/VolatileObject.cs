@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class VolatileObject : MonoBehaviour
 {
-    publi
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float timeToShow;
+    float countdown;
     void Update()
     {
-        
+        countdown -= Time.deltaTime;
+        if (countdown <= 0f) {
+            countdown = timeToShow;
+            // set active false
+            gameObject.SetActive(false);
+            Debug.Log("DISAPEAR");
+        }         
     }
+    
 }
