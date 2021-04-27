@@ -71,7 +71,6 @@ public class Enemy : MonoBehaviour
     {
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
         Destroy(movePoint.gameObject);
-
     }
 
     private void OnMyTurn()
