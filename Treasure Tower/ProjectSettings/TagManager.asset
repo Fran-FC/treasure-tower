@@ -9,6 +9,7 @@ TagManager:
   - Armor
   - RotationObject
   - MapGenerator
+  - Fire
   layers:
   - Default
   - TransparentFX

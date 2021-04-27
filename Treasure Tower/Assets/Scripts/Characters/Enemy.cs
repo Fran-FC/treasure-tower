@@ -93,7 +93,6 @@ public class Enemy : MonoBehaviour
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
                 movePoint.position = newPoint;
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
-
             }
             
             if (animator.GetInteger("WalkState") == 0)
@@ -104,7 +103,6 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-
         if(!knockback){
             // calculate path and paint next move
             if(!walking && turn)
@@ -116,7 +114,6 @@ public class Enemy : MonoBehaviour
                 warn.localPosition = siguienteMovimiento;
                 //ShowWarnTile(true);
             }
-
             Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
             float nuevaX = Math.Sign(aux.x) * -1;
             if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
@@ -132,7 +129,6 @@ public class Enemy : MonoBehaviour
                 animator.SetInteger("WalkState", 0);
             }
             ShowWarnTile(!walking);
-
         } else {
             // remove next tile mark
             ShowWarnTile(false);
@@ -141,7 +137,6 @@ public class Enemy : MonoBehaviour
             {
                 knockback = false;
             }
-
         }
     }
 
@@ -154,10 +149,6 @@ public class Enemy : MonoBehaviour
 
     private void CalcInRange()
     {
-        /**
-        if(Vector3.Distance(player.transform.position, transform.position) <= 1.05f){
-
-        }**/
         if (player.transform.position.x == this.transform.position.x && (player.transform.position.y == this.transform.position.y - 1 || player.transform.position.y == this.transform.position.y + 1))
         {
             inRange = true;
@@ -182,15 +173,10 @@ public class Enemy : MonoBehaviour
     }
     private Vector3 CalcPath()
     {
-        //orientation = new Vector2(0, 0);
-        // ToDO: check player distance
         Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
         float nuevaX = Math.Sign(aux.x) * -1;
         if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
         spriteRenderer.flipX = isFlippedX;
-
-//        Debug.Log("Call to CalcPath " + aux);
-
 
         if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0) && Mathf.Abs(aux.x) > Mathf.Abs(aux.y))
         {
@@ -202,15 +188,6 @@ public class Enemy : MonoBehaviour
         return new Vector3(0f, nuevaY, 0f);
 
     }
-    /*private bool CanWalk()
-     {
-         bool canWalk = false;
-         if(mapGridInfo.isTileWalkable(this.transform.position.x-1,0) || mapGridInfo.isTileWalkable(this.transform.position.x + 1, 0) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1) || mapGridInfo.isTileWalkable(0, this.transform.position.y - 1))
-         {
-             canWalk = true;
-         }
-         return canWalk;
-     }*/
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -219,18 +196,8 @@ public class Enemy : MonoBehaviour
         {
             if (other.gameObject.transform.parent != null) {
                 hp--;
-//                rigidbody.isKinematic = false;
-//                Vector2 diff = rigidbody.transform.position - other.transform.position;
-//                diff = diff.normalized * thrust;
-//                rigidbody.AddForce(diff, ForceMode2D.Impulse);
-//
-//                StartCoroutine("KnockCo");
-                // knockback
                 KnockBack(other.gameObject.transform.position);
-
                 animator.SetBool("Damage", true);
-                
-                // recieve damage first
                 Invoke("HandleDamage", 0.4f);
             }
         }
