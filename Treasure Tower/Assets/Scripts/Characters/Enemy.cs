@@ -78,6 +78,8 @@ public class Enemy : MonoBehaviour
         turn = true;
         attackTurn = true;
 
+        Debug.Log("Is my Turn");
+
         player = GameObject.FindWithTag("Player");
         CalcInRange();
         if (inRange)
@@ -86,7 +88,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            newPoint = movePoint.position + siguienteMovimiento;
+            //newPoint = movePoint.position + siguienteMovimiento;
+            siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
+            newPoint = siguienteMovimiento;
 
             if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
             {
@@ -105,15 +109,21 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if(!knockback){
+        if (!knockback)
+        {
             // calculate path and paint next move
-            if(!walking && turn)
+            if (!walking && turn)
             {
                 turn = false;
-                siguienteMovimiento = CalcPath();
-                newPoint = movePoint.position + siguienteMovimiento;
+                //siguienteMovimiento = CalcPath();
 
-                warn.localPosition = siguienteMovimiento;
+                //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
+
+                //Debug.Log(siguienteMovimiento);
+
+                newPoint = movePoint.position;
+
+                warn.position = siguienteMovimiento;
                 //ShowWarnTile(true);
             }
             Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
@@ -131,7 +141,9 @@ public class Enemy : MonoBehaviour
                 animator.SetInteger("WalkState", 0);
             }
             ShowWarnTile(!walking);
-        } else {
+        }
+        else
+        {
             // remove next tile mark
             ShowWarnTile(false);
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime * 2);
@@ -142,7 +154,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void ShowWarnTile(bool show){
+    private void ShowWarnTile(bool show)
+    {
         Vector3 hidden = new Vector3(warn.position.x, warn.position.y, 1f);
         Vector3 nothidden = new Vector3(warn.position.x, warn.position.y, 0f);
 
@@ -168,7 +181,8 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         //TD
-        if(hp>0 && attackTurn){
+        if (hp > 0 && attackTurn)
+        {
             attackTurn = false;
             player.GetComponent<Player>().Damage();
         }
@@ -191,9 +205,10 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private bool isPlayerNearby() {
+    private bool isPlayerNearby()
+    {
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         return distance <= 10.0f;
     }
 
@@ -202,7 +217,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            if (other.gameObject.transform.parent != null) {
+            if (other.gameObject.transform.parent != null)
+            {
                 hp--;
                 KnockBack(other.gameObject.transform.position);
                 animator.SetBool("Damage", true);
@@ -211,9 +227,11 @@ public class Enemy : MonoBehaviour
         }
 
     }
-    
-    private void HandleDamage(){
-        if (hp <= 0) {
+
+    private void HandleDamage()
+    {
+        if (hp <= 0)
+        {
             Destroy(gameObject);
             mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
             mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
@@ -221,27 +239,35 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Damage", false);
     }
 
-    private void KnockBack(Vector3 weaponPosition){
+    private void KnockBack(Vector3 weaponPosition)
+    {
         knockback = true;
         //calc position knockback
-//        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
-//        mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
-        Vector3 distance =  transform.position - weaponPosition;
+        //        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
+        //        mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
+        Vector3 distance = transform.position - weaponPosition;
 
-        if(distance.x > 0.1f){
+        if (distance.x > 0.1f)
+        {
             distance.x = -1f;
-        }else if(distance.x < -0.1f){
+        }
+        else if (distance.x < -0.1f)
+        {
             distance.x = 1f;
-        }if(distance.y > 0.1f){
+        }
+        if (distance.y > 0.1f)
+        {
             distance.y = -1f;
         }
-        else if(distance.y < -0.1f){
+        else if (distance.y < -0.1f)
+        {
             distance.y = 1f;
         }
 
-        Debug.Log(distance);
+        //Debug.Log(distance);
         Vector3 newPoint = movePoint.position - distance;
-        if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y)) {
+        if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y))
+        {
             mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
             mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
             movePoint.position = newPoint;
