@@ -573,8 +573,8 @@ public class GridNavigator
         GridInfo goal = mapInfo.getGridInfo(objective.x, objective.y);
 
 
-        Debug.Log("Tile de inicio: " + current);
-        Debug.Log("Tile objetivo: " + goal);
+        //Debug.Log("Tile de inicio: " + current);
+        //Debug.Log("Tile objetivo: " + goal);
 
 
         ANode initialNode = new ANode(current, 0f, 0f);
@@ -582,14 +582,14 @@ public class GridNavigator
 
         openList.Add(initialNode);
 
-        Debug.Log(openList.Count);
-        Debug.Log(closedList.Count);
+        //Debug.Log(openList.Count);
+        //Debug.Log(closedList.Count);
 
         while (openList.Count > 0)
         {
 
-            Debug.Log(openList.Count);
-            Debug.Log(closedList.Count);
+            //Debug.Log(openList.Count);
+            //Debug.Log(closedList.Count);
 
             ANode currentNode = openList[0];
 
@@ -689,8 +689,8 @@ public class GridNavigator
                     if (child.GridInfo.walkable || child.GridInfo.Equals(target))
                     {
                         child.H =
-                           ((child.GridInfo.coord_x - currentNode.GridInfo.coord_x) * (child.GridInfo.coord_x - currentNode.GridInfo.coord_x)) +
-                           ((child.GridInfo.coord_y - currentNode.GridInfo.coord_y) * (child.GridInfo.coord_y - currentNode.GridInfo.coord_y))
+                           ((child.GridInfo.coord_x - target.coord_x) * (child.GridInfo.coord_x - target.coord_x)) +
+                           ((child.GridInfo.coord_y - target.coord_y) * (child.GridInfo.coord_y - target.coord_y))
                        ;
                     }
                     else
