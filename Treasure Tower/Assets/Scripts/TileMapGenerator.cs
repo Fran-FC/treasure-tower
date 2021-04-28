@@ -216,12 +216,12 @@ public class TileMapGenerator : MonoBehaviour
             if (path != null)
             {
 
-                // mapInfo.markNonWalkableTiles(tilemap);
+                //mapInfo.markNonWalkableTiles(tilemap);
 
                 for (int i = 0; i < path.Count; i++)
                 {
-                    //tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
-                    //tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.green);
+                    tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
+                    tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.blue);
 
                     Debug.Log("Tile " + i + " of path is: " + path[i]);
                 }
@@ -616,7 +616,7 @@ public class GridNavigator
 
             mapInfo.markNonWalkableTiles(tilemap);
 
-            initializeValidChildren(currentNode, children, openList, closedList);
+            initializeValidChildren(currentNode, children, openList, closedList, goal);
 
 
             for (int i = 0; i < closedList.Count; i++)
@@ -676,7 +676,7 @@ public class GridNavigator
     }
 
 
-    private void initializeValidChildren(ANode currentNode, List<ANode> children, List<ANode> openList, List<ANode> closedList)
+    private void initializeValidChildren(ANode currentNode, List<ANode> children, List<ANode> openList, List<ANode> closedList, GridInfo target)
     {
         foreach (ANode child in children)
         {
@@ -686,7 +686,7 @@ public class GridNavigator
                 {
                     child.G = currentNode.G + 1;
 
-                    if (child.GridInfo.walkable)
+                    if (child.GridInfo.walkable || child.GridInfo.Equals(target))
                     {
                         child.H =
                            ((child.GridInfo.coord_x - currentNode.GridInfo.coord_x) * (child.GridInfo.coord_x - currentNode.GridInfo.coord_x)) +

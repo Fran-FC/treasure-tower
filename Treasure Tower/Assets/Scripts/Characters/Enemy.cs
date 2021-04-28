@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
         else
         {
             //newPoint = movePoint.position + siguienteMovimiento;
+            siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
             newPoint = siguienteMovimiento;
 
             if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
@@ -116,7 +117,7 @@ public class Enemy : MonoBehaviour
                 turn = false;
                 //siguienteMovimiento = CalcPath();
 
-                siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
+                //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
 
                 //Debug.Log(siguienteMovimiento);
 
