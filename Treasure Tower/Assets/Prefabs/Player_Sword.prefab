@@ -115,7 +115,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2281077745814626841
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b800bfe3b1115c34484a71d6ff3b04eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationObject: {fileID: 2281077746131138878}
   movePoint: {fileID: 2281077744996443087}
   moveSpeed: 5
 --- !u!61 &2281077745814626847

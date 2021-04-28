@@ -91,8 +91,10 @@ public class Enemy : MonoBehaviour
             if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
             {
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
+                mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
                 movePoint.position = newPoint;
                 mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+                mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
             }
 
             if (animator.GetInteger("WalkState") == 0)
@@ -214,6 +216,7 @@ public class Enemy : MonoBehaviour
         if (hp <= 0) {
             Destroy(gameObject);
             mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
+            mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
         }
         animator.SetBool("Damage", false);
     }
@@ -221,15 +224,13 @@ public class Enemy : MonoBehaviour
     private void KnockBack(Vector3 weaponPosition){
         knockback = true;
         //calc position knockback
-        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
+//        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
+//        mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
         Vector3 distance =  transform.position - weaponPosition;
 
-        Debug.Log(distance.x);
-        Debug.Log(distance.y);
         if(distance.x > 0.1f){
             distance.x = -1f;
         }else if(distance.x < -0.1f){
-            Debug.Log(distance.x);
             distance.x = 1f;
         }if(distance.y > 0.1f){
             distance.y = -1f;
@@ -242,8 +243,10 @@ public class Enemy : MonoBehaviour
         Vector3 newPoint = movePoint.position - distance;
         if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y)) {
             mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
+            mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
             movePoint.position = newPoint;
             mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+            mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
         }
     }
 }

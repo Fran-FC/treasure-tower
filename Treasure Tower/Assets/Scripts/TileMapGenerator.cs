@@ -101,6 +101,14 @@ public class TileMapGenerator : MonoBehaviour
         Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x,y,0));
         return mapInfo.isTileWalkable(cellPos.x, cellPos.y);
     }
+    public bool isTileEnemy(float v_x, float v_y) {
+
+        int x = (int) Mathf.Floor(v_x);
+        int y = (int) Mathf.Floor(v_y);
+
+        Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x,y,0));
+        return mapInfo.isTileEnemy(cellPos.x, cellPos.y);
+    }
 
     public void setTileWalkableState(float v_x, float v_y, bool isWalkable) {
         int x = (int)Mathf.Floor(v_x);
@@ -110,6 +118,13 @@ public class TileMapGenerator : MonoBehaviour
         mapInfo.setTileWalkableState(cellPos.x, cellPos.y, isWalkable);
     }
 
+    public void setTileEnemyState(float v_x, float v_y, bool isEnemy) {
+        int x = (int)Mathf.Floor(v_x);
+        int y = (int)Mathf.Floor(v_y);
+
+        Vector3Int cellPos = tilemap.WorldToCell(new Vector3(x, y, 0));
+        mapInfo.setTileEnemyState(cellPos.x, cellPos.y, isEnemy);
+    }
    
 
     public void spawnEnemies() {
@@ -296,6 +311,9 @@ public class MapInfo
         return map[x, y].walkable;
     }
 
+    public bool isTileEnemy(int x, int y) {
+        return map[x, y].hasEnemy;
+    }
 
     public void markNonWalkableTiles(Tilemap tilemap)
     {
@@ -321,6 +339,10 @@ public class MapInfo
 
     public void setTileWalkableState(int x, int y, bool isWalkable) {
         map[x, y].walkable = isWalkable;
+    }
+
+    public void setTileEnemyState(int x, int y, bool isEnemy) {
+        map[x, y].hasEnemy = isEnemy;
     }
 }
 

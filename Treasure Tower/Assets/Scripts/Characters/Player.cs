@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject rotationObject;
     Animator animator;
     SpriteRenderer spriteRenderer;
     bool skipTurn = false;
@@ -64,54 +65,71 @@ public class Player : MonoBehaviour
     
         if(Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
         {
+            Vector3 cachePos = movePoint.position;
+            Vector3 oldPos = cachePos;
+            Vector3 objectOffset;
+
+            //get object orientation
+            Vector3 objPos = GetObjectPos();
+            bool walkable = false;
+            if(!Vector3.Equals(objPos, Vector3.zero) )  {
+                objectOffset = objPos + new Vector3(movement.x, movement.y, 0f); 
+                if(mapGridInfo.isTileWalkable(objectOffset.x, objectOffset.y)|| mapGridInfo.isTileEnemy(objectOffset.x, objectOffset.y)) {
+                    walkable = true;        
+                }
+                float dist = Vector3.Distance(transform.position , objectOffset);
+                if(dist < 0.05f) {
+                    walkable = true;
+                }
+            } else {
+                walkable = true;
+            }
             if ( Mathf.Abs(movement.x) == 1f)
             {
-                Vector3 cachePos = movePoint.position;
-                Vector3 oldPos = cachePos;
                 cachePos += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                if(walkable){
+                    if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
+                        movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                        mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
+                        mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
 
-                if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
-                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                    mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
-                    mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
-
-                    if (movement.x > 0f)
-                    {
-                        prevWalkState = CharWalkStates.walk;
-                        if (orientation < 0f)
+                        if (movement.x > 0f)
                         {
-                            orientation = 1f;
-                            flip = false;
+                            prevWalkState = CharWalkStates.walk;
+                            if (orientation < 0f)
+                            {
+                                orientation = 1f;
+                                flip = false;
+                            }
                         }
-                    }
-                    else
-                    {
-                        prevWalkState = CharWalkStates.walk;
-                        if (orientation > 0f)
+                        else
                         {
-                            orientation = -1f;
-                            flip = true;
+                            prevWalkState = CharWalkStates.walk;
+                            if (orientation > 0f)
+                            {
+                                orientation = -1f;
+                                flip = true;
+                            }
                         }
+                        // if we moved, send event for moving
+                        Messenger.Broadcast(GameEvent.MOVED);
                     }
-                    // if we moved, send event for moving
-                    Messenger.Broadcast(GameEvent.MOVED);
                 }
                 
             } else if ( Mathf.Abs(movement.y) == 1f)
             {
-
-                Vector3 cachePos = movePoint.position;
-                Vector3 oldPos = cachePos;
                 cachePos += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                //cachePos.y += objPos.y;
+                if(walkable) {
+                    if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
+                        movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                        mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
+                        mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
+                        prevWalkState = CharWalkStates.walk;
 
-                if (mapGridInfo.isTileWalkable(cachePos.x, cachePos.y)) {
-                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                    mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
-                    mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
-                    prevWalkState = CharWalkStates.walk;
-
-                    // if we moved, send event for moving
-                    Messenger.Broadcast(GameEvent.MOVED);
+                        // if we moved, send event for moving
+                        Messenger.Broadcast(GameEvent.MOVED);
+                    }
                 }
             } else if(skipTurn) 
             {
@@ -124,7 +142,28 @@ public class Player : MonoBehaviour
         animator.SetInteger("WalkState", (int)state);
         spriteRenderer.flipX = flip;
     }
+    
+    private Vector3 GetObjectPos(){
+        Transform obj;
+        if(rotationObject.transform.childCount > 0) {
+            obj = rotationObject.transform.GetChild(0);
 
+            Debug.Log(obj.position);
+            return  obj.position;
+        }
+        return Vector3.zero;
+    }
+
+    private Vector3 ObjectOffsetPosition(Vector3 obj, Vector3 move) {
+        Debug.Log("Object position: "+ obj);
+        Debug.Log("Movement orientation: "+move);
+        float dist = Vector3.Distance(obj, move);
+        if(dist < 0.05f){
+            Debug.Log("Offset applied");
+            return move;
+        }
+        return Vector3.zero;
+    }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Armor")){
             if(lifes < 3){
