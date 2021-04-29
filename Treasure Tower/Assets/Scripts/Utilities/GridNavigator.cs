@@ -154,8 +154,10 @@ public class GridNavigator
                         child.H = float.MaxValue;
                     }
 
-
-                    openList.Add(child);
+                    if(child.F < 40)
+                    {
+                        openList.Add(child);
+                    }
                 }
             }
         }
