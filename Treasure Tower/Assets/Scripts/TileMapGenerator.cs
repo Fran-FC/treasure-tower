@@ -205,7 +205,7 @@ public class TileMapGenerator : MonoBehaviour
     public Vector3 DrawPath(Vector3 start, Vector3 end)
     {
 
-        if (Vector3.Distance(start, end) < 10f)
+        if (Vector3.Distance(start, end) < 10f && isTargetVisible(start, end))
         {
             Vector3Int s = tilemap.WorldToCell(start);
             Vector3Int e = tilemap.WorldToCell(end);
@@ -242,6 +242,90 @@ public class TileMapGenerator : MonoBehaviour
         }
 
         return start;
+    }
+
+    private bool isTargetVisible(Vector3 start, Vector3 end)
+    {
+        //brenham's line algorithm to stablish line of sight
+        Vector3Int s = tilemap.WorldToCell(start);
+        Vector3Int e = tilemap.WorldToCell(end);
+        int dx = e.x - s.x;
+        int dy = e.y - s.y;
+        float slope;
+        if (dx == 0) slope = dy;
+        else slope = (float)dy / dx;
+
+        dx = Mathf.Abs(dx);
+        dy = Mathf.Abs(dy);
+
+        if(Mathf.Abs(slope) < 1)
+        {
+            //if the endpoint is behind we swap it
+            if(s.x > e.x)
+            {
+                Vector3Int temp = s;
+                s = e;
+                e = temp;
+            }
+            int p = (2 * dy) - dx;
+            int x = s.x;
+            int y = s.y;
+
+            while (x < e.x)
+            {
+                x++;
+                if (p >= 0)
+                {
+                    if (slope < 1) { y++; }
+                    else { y--; }
+
+                    p = p + (2 * dy) - (2 * dx);
+                }
+                else
+                {
+                    p = p + (2 * dy);
+                }
+                //check coordinates for an unwalkable tile
+                GridInfo current = mapInfo.getGridInfo(x, y);
+                //TO BE CHANGED, ESTO ES PATATA Y SE VA A ROMPER COMO ESCALEMOS UN POCO LAS NECESIDADES. SOLO COMPRUEBA SI ES CAMINABLE Y SI ES SUELO. SIEMPRE QUE SEA SUELO PODRÁ VERTE 
+                if (!current.walkable && !(current.tileType == (int)TileTypes.FLOOR)) { return false; }
+            }
+        }
+        else if(Mathf.Abs(slope) >= 1)
+        {
+            //if the endpoint is behind we swap it
+            if (s.y > e.y)
+            {
+                Vector3Int temp = s;
+                s = e;
+                e = temp;
+            }
+            int p = (2 * dx) - dy;
+            int x = s.x;
+            int y = s.y;
+
+            while (y < e.y)
+            {
+                y++;
+                if (p >= 0)
+                {
+                    if (slope >= 1) { x++; }
+                    else { x--; }
+
+                    p = p + (2 * dx) - (2 * dy);
+                }
+                else
+                {
+                    p = p + (2 * dx);
+                }
+                //check coordinates for an unwalkable tile
+                GridInfo current = mapInfo.getGridInfo(x, y);
+                //TO BE CHANGED, ESTO ES PATATA Y SE VA A ROMPER COMO ESCALEMOS UN POCO LAS NECESIDADES. SOLO COMPRUEBA SI ES CAMINABLE Y SI ES SUELO. SIEMPRE QUE SEA SUELO PODRÁ VERTE 
+                if (!current.walkable && !(current.tileType == (int)TileTypes.FLOOR)) { return false; }
+            }
+        }
+        //if it has arrived here it means all tiles in the way are walkable, therefore visible
+        return true;
     }
 }
 
@@ -688,9 +772,11 @@ public class GridNavigator
 
                     if (child.GridInfo.walkable || child.GridInfo.Equals(target))
                     {
+                        float deltaX = (child.GridInfo.coord_x - target.coord_x);
+                        float deltaY = (child.GridInfo.coord_y - target.coord_y);
                         child.H =
-                           ((child.GridInfo.coord_x - target.coord_x) * (child.GridInfo.coord_x - target.coord_x)) +
-                           ((child.GridInfo.coord_y - target.coord_y) * (child.GridInfo.coord_y - target.coord_y))
+                           (deltaX * deltaX) +
+                           (deltaY * deltaY)
                        ;
                     }
                     else
