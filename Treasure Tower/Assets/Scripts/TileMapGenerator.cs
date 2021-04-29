@@ -221,7 +221,7 @@ public class TileMapGenerator : MonoBehaviour
                     tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
                     tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.blue);
 
-                    Debug.Log("Tile " + i + " of path is: " + path[i]);
+                    //Debug.Log("Tile " + i + " of path is: " + path[i]);
                 }
 
             }
@@ -242,7 +242,39 @@ public class TileMapGenerator : MonoBehaviour
         return start;
     }
 
-    private bool isTargetVisible(Vector3 start, Vector3 end)
+    public List<GridInfo> GetValidPath(Vector3 start, Vector3 end) {
+        
+        Vector3Int s = tilemap.WorldToCell(start);
+        Vector3Int e = tilemap.WorldToCell(end);
+
+        List<GridInfo> path = mapNav.GeneratePath(s, e);
+
+
+        if (path != null)
+        {
+
+            //mapInfo.markNonWalkableTiles(tilemap);
+
+            path.RemoveAt(0);
+
+            for (int i = 0; i < path.Count; i++)
+            {
+                tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
+                tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.blue);
+
+                //Debug.Log("Tile " + i + " of path is: " + path[i]);
+            }
+
+        }
+        else
+        {
+            Debug.Log("Path is null...");
+        }
+
+        return path;
+    }
+
+    public bool isTargetVisible(Vector3 start, Vector3 end)
     {
         //brenham's line algorithm to stablish line of sight
         Vector3Int s = tilemap.WorldToCell(start);
@@ -324,5 +356,9 @@ public class TileMapGenerator : MonoBehaviour
         }
         //if it has arrived here it means all tiles in the way are walkable, therefore visible
         return true;
+    }
+
+    public Vector3 getGridInfoGlobalTransform(GridInfo tile) {
+        return tilemap.GetCellCenterWorld(new Vector3Int(tile.coord_x, tile.coord_y, 0));
     }
 }

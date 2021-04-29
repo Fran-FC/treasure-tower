@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     public int hp = 1;
 
 
+    private List<GridInfo> currentPath;
+
     // Start is called before the first frame update
     /*enum WhichEnemy
     {
@@ -89,22 +91,47 @@ public class Enemy : MonoBehaviour
         else
         {
             //newPoint = movePoint.position + siguienteMovimiento;
-            siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
-            newPoint = siguienteMovimiento;
+            //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
 
-            if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
+            Vector3 currentPos = transform.position;
+            Vector3 playerPos = player.transform.position;
+
+            if(Vector3.Distance(currentPos, playerPos) < 10f)
             {
-                mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
-                mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
-                movePoint.position = newPoint;
-                mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
-                mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
+                if (mapGridInfo.isTargetVisible(currentPos, playerPos)) {
+                    List<GridInfo> generatedPath = mapGridInfo.GetValidPath(currentPos, playerPos);
+                    if (generatedPath != null) {
+                        currentPath = generatedPath;
+
+                    }
+                }
             }
 
-            if (animator.GetInteger("WalkState") == 0)
-            {
-                animator.SetInteger("WalkState", 1);
+            if (currentPath != null && currentPath.Count > 0) {
+
+                GridInfo nextTile = currentPath[0];
+                currentPath.RemoveAt(0);
+
+                siguienteMovimiento = mapGridInfo.getGridInfoGlobalTransform(nextTile);
+
+                newPoint = siguienteMovimiento;
+
+                if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
+                {
+                    mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
+                    mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
+                    movePoint.position = newPoint;
+                    mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+                    mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
+                }
+
+                if (animator.GetInteger("WalkState") == 0)
+                {
+                    animator.SetInteger("WalkState", 1);
+                }
             }
+
+            
         }
     }
     void Update()
