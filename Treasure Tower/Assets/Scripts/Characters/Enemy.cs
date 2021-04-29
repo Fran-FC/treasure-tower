@@ -243,8 +243,9 @@ public class Enemy : MonoBehaviour
     {
         knockback = true;
         //calc position knockback
-        //        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
-        //        mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
+        mapGridInfo.setTileWalkableState(transform.position.x, transform.position.y, true);
+        mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
+
         Vector3 distance = transform.position - weaponPosition;
 
         if (distance.x > 0.1f)
