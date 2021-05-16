@@ -68,16 +68,16 @@ public class GridNavigator
             //Create Children
             List<ANode> children = CreateCurrentNodeChildren(currentNode);
 
-            mapInfo.markNonWalkableTiles(tilemap);
+            //mapInfo.markNonWalkableTiles(tilemap);
 
             initializeValidChildren(currentNode, children, openList, closedList, goal);
 
 
-            for (int i = 0; i < closedList.Count; i++)
+            /*for (int i = 0; i < closedList.Count; i++)
             {
                 tilemap.SetTileFlags(new Vector3Int(closedList[i].GridInfo.coord_x, closedList[i].GridInfo.coord_y, 0), TileFlags.None);
                 tilemap.SetColor(new Vector3Int(closedList[i].GridInfo.coord_x, closedList[i].GridInfo.coord_y, 0), Color.green);
-            }
+            }*/
         }
 
         return null;

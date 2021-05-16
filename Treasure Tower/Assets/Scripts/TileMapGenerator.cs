@@ -216,13 +216,13 @@ public class TileMapGenerator : MonoBehaviour
 
                 //mapInfo.markNonWalkableTiles(tilemap);
 
-                for (int i = 0; i < path.Count; i++)
+                /*for (int i = 0; i < path.Count; i++)
                 {
-                    tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
-                    tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.blue);
+                    //tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
+                    //tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.blue);
 
                     //Debug.Log("Tile " + i + " of path is: " + path[i]);
-                }
+                }*/
 
             }
             else
@@ -257,13 +257,13 @@ public class TileMapGenerator : MonoBehaviour
 
             path.RemoveAt(0);
 
-            for (int i = 0; i < path.Count; i++)
+            /*for (int i = 0; i < path.Count; i++)
             {
                 tilemap.SetTileFlags(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), TileFlags.None);
                 tilemap.SetColor(new Vector3Int(path[i].coord_x, path[i].coord_y, 0), Color.blue);
 
                 //Debug.Log("Tile " + i + " of path is: " + path[i]);
-            }
+            }*/
 
         }
         else
