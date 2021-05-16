@@ -93,10 +93,14 @@ public class MapInfo
                 {
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, true, Random.Range(0, 2)); // TODO: Fix this cause it sucks
                 }
+                else if (color.Equals(Color.green)) { 
+                    map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, false, -1, true, 2);
+                }
                 else
                 {
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.WALL, false);
                 }
+
 
                 // Setting Neighs
                 if (i > 0)
