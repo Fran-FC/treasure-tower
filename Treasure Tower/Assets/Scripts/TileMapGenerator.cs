@@ -36,6 +36,9 @@ public class TileMapGenerator : MonoBehaviour
     private List<GameObject> objectTypesList;
 
     [SerializeField]
+    private List<GameObject> nonUsableObjectTypesList;
+
+    [SerializeField]
     private CinemachineVirtualCamera cam;
 
     [SerializeField]
@@ -86,6 +89,7 @@ public class TileMapGenerator : MonoBehaviour
             }
 
             spawnObjects();
+            spawnNonUsableObjects();
         }
     }
 
@@ -171,6 +175,24 @@ public class TileMapGenerator : MonoBehaviour
     }
 
 
+    public void spawnNonUsableObjects()
+    {
+        List<ObjectInfo> objects = mapInfo.getNonUsableObjectsList();
+
+        for (int i = 0; i < objects.Count; i++)
+        {
+
+            ObjectInfo obj = objects[i];
+
+            Vector3 objPos = tilemap.GetCellCenterWorld(obj.position);
+
+            GameObject objPrefab = nonUsableObjectTypesList[obj.objectType];
+
+            Instantiate(objPrefab, objPos, Quaternion.identity);
+
+        }
+    }
+
     public void drawMap(Color[,] colorMap)
     {
 
@@ -192,6 +214,7 @@ public class TileMapGenerator : MonoBehaviour
 
         spawnEnemies();
         spawnObjects();
+        spawnNonUsableObjects();
     }
 
     public bool checkFakeInfo()
