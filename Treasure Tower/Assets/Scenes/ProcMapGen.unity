@@ -206,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
       propertyPath: nonUsableObjectTypesList.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
@@ -265,6 +265,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 683537342126669423, guid: 3cb69b3eb77e7234fbcdb6e71578b9bd,
         type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: nonUsableObjectTypesList.Array.data[1]
+      value: 
+      objectReference: {fileID: 6493634999130755753, guid: baa3d152e07024543877b6a34b638a9f,
+        type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: nonUsableObjectTypesList.Array.data[2]
+      value: 
+      objectReference: {fileID: 4471664227161006607, guid: a24b5dc94ab39554baef4c53cfa77832,
+        type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: nonUsableObjectTypesList.Array.data[3]
+      value: 
+      objectReference: {fileID: 1693070625409270941, guid: 81088aec80dcaa74fb25d62dbf56238f,
+        type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: nonUsableObjectTypesList.Array.data[4]
+      value: 
+      objectReference: {fileID: 8485278325133768466, guid: 8226b65a9e0d6d142b8f0b4b0b269496,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134a03b760ebd0a4c99cf0e80118c072, type: 3}
 --- !u!1 &166710227
@@ -309,7 +333,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 88b4aa7995e3afe44acecf1c395bfb40, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.141
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -708,7 +732,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.1064814, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
