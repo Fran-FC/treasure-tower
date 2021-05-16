@@ -10,12 +10,14 @@ public class MapInfo
 
     List<EnemyInfo> enemies;
     List<ObjectInfo> objects;
+    List<ObjectInfo> nonUsableObjects;
 
     public MapInfo(int rows, int cols)
     {
         map = new GridInfo[rows, cols];
         enemies = new List<EnemyInfo>();
         objects = new List<ObjectInfo>();
+        nonUsableObjects = new List<ObjectInfo>();
     }
 
     public void updateMapFakeInfo()
@@ -32,7 +34,7 @@ public class MapInfo
                 }
                 else if (j == Mathf.FloorToInt(map.GetLength(1) / 2) && i == Mathf.FloorToInt(map.GetLength(0) / 2))
                 {
-                    map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, false, 0, true, 0);
+                    map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, false, 0, true, false, 0);
                 }
                 else
                 {
@@ -77,6 +79,8 @@ public class MapInfo
 
                 Color color = colorMap[j, i];
 
+                
+
                 if (color.Equals(Color.black))
                 {
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.WALL_TOP, false);
@@ -93,6 +97,9 @@ public class MapInfo
                 {
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, true, Random.Range(0, 2)); // TODO: Fix this cause it sucks
                 }
+                else if (color.Equals(Color.green)) { 
+                    map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, false, -1, false, true, 0);
+                }
                 else
                 {
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.WALL, false);
@@ -108,6 +115,7 @@ public class MapInfo
                 {
                     map[i, j].SetNeighbor(Direction.S, map[i, j - 1]);
                 }
+
             }
         }
     }
@@ -142,6 +150,11 @@ public class MapInfo
                     {
                         objects.Add(new ObjectInfo(new Vector3Int(i, j, 0), info.objectType));
                     }
+
+                    if (info.hasNonUsableObject) 
+                    {
+                        nonUsableObjects.Add(new ObjectInfo(new Vector3Int(i, j, 0), info.objectType));
+                    }
                 }
             }
         }
@@ -161,6 +174,10 @@ public class MapInfo
     public List<ObjectInfo> getObjectsList()
     {
         return objects;
+    }
+
+    public List<ObjectInfo> getNonUsableObjectsList() {
+        return nonUsableObjects;
     }
 
     public bool isTileWalkable(int x, int y)

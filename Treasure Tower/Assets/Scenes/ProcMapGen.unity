@@ -200,6 +200,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
         type: 3}
+      propertyPath: objectTypesList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: nonUsableObjectTypesList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1440466832}
@@ -231,6 +241,23 @@ PrefabInstance:
       propertyPath: enemyTypesList.Array.data[1]
       value: 
       objectReference: {fileID: 7886912374822791813, guid: e25a00d370e85ab488d0828d1db10516,
+        type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: objectTypesList.Array.data[2]
+      value: 
+      objectReference: {fileID: 119716597959827064, guid: 3544673a9f5cc0741a29c2e444834916,
+        type: 3}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: useFakeInfo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193852724514493410, guid: 134a03b760ebd0a4c99cf0e80118c072,
+        type: 3}
+      propertyPath: nonUsableObjectTypesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 119716597959827064, guid: 3544673a9f5cc0741a29c2e444834916,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134a03b760ebd0a4c99cf0e80118c072, type: 3}
@@ -675,7 +702,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.1049383, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

@@ -13,6 +13,8 @@ public class GridInfo
     public int enemyType { get; set; }
 
     public bool hasObject { get; set; }
+    public bool hasNonUsableObject { get; set; }
+
     public int objectType { get; set; }
 
     public int coord_x { get; set; }
@@ -21,7 +23,7 @@ public class GridInfo
     private GridInfo[] neighbors = new GridInfo[4];
 
 
-    public GridInfo(int x, int y, int type, bool isPlayerPos, bool isEnemy = false, int eType = -1, bool isObject = false, int oType = -1)
+    public GridInfo(int x, int y, int type, bool isPlayerPos, bool isEnemy = false, int eType = -1, bool isObject = false, bool isNonUsableObject = false, int oType = -1)
     {
 
         coord_x = x;
@@ -34,6 +36,12 @@ public class GridInfo
         enemyType = eType;
 
         hasObject = isObject;
+        hasNonUsableObject = isNonUsableObject;
+
+        if (hasNonUsableObject) {
+            walkable = false;
+        }
+
         objectType = oType;
     }
 
