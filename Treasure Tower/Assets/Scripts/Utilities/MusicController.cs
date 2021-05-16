@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private static MusicController _instance;
+    private static MusicController instance {
+        get {
+            if(_instance==null){
+                _instance = GameObject.FindObjectOfType<MusicController>();
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Awake() {
+        if(_instance == null) {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        } else {
+            if(this != _instance) 
+                Destroy(this.gameObject);
+        }
     }
+
+    public void Play() { 
+        this.gameObject.GetComponent<AudioSource>().Play();
+    }
+
 }
