@@ -373,8 +373,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217249734}
-  - component: {fileID: 1217249733}
   - component: {fileID: 1217249732}
+  - component: {fileID: 1217249733}
   m_Layer: 0
   m_Name: Soundtrack
   m_TagString: Untagged
@@ -404,11 +404,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3f476ad5ee33ff0439eb3f1bcd4d220f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1deea3a8689c5fd46a3b0db915160e4f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
