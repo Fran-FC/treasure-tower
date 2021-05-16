@@ -80,8 +80,6 @@ public class Enemy : MonoBehaviour
         turn = true;
         attackTurn = true;
 
-        Debug.Log("Is my Turn");
-
         player = GameObject.FindWithTag("Player");
         CalcInRange();
         if (inRange)

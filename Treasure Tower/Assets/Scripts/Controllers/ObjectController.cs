@@ -10,7 +10,19 @@ public class ObjectController : MonoBehaviour
     Transform item;
     float rotationDest = 0f, rotationOrientation = 1f, diff;
 
+    private TileMapGenerator mapGridInfo; 
+
+    Vector3[] neightTiles;
+    int neightIndex = 2;
+
+
+    void Start() {
+        mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
+        neightTiles = new Vector3[8];
+    }
+
     private void FixedUpdate() {
+
         diff = transform.eulerAngles.z - rotationDest ;
         // when we reach rotation point, capture key events and update rotation dest
         if (Mathf.Abs(diff) <= 0.05f)
@@ -18,18 +30,26 @@ public class ObjectController : MonoBehaviour
             if(item!= null && item.parent == transform){
                 if(Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse0))
                 {
-                    rotationOrientation = 1f;
-                    rotationDest = (360 + rotationDest + 90f) % 360f;
+                    // check if it is possible to rotate
+                    if(canRotate(-1)) {
+                        neightIndex = (8 + neightIndex - 2) % 8;
+                        //Debug.Log(neightIndex);
+                        rotationOrientation = 1f;
+                        rotationDest = (360 + rotationDest + 90f) % 360f;
 
-                    // if we moved, send event for moving
-                    Messenger.Broadcast(GameEvent.MOVED);
+                        // if we moved, send event for moving
+                        Messenger.Broadcast(GameEvent.MOVED);
+                    } 
                 } else if(Input.GetKey(KeyCode.E)|| Input.GetKey(KeyCode.Mouse1) )
                 {
-                    rotationOrientation = -1f;
-                    rotationDest = (360 + rotationDest - 90f) % 360f;
+                    if(canRotate(1)) {
+                        neightIndex = (8 + neightIndex + 2) % 8;
+                        rotationOrientation = -1f;
+                        rotationDest = (360 + rotationDest - 90f) % 360f;
 
-                    // if we moved, send event for moving
-                    Messenger.Broadcast(GameEvent.MOVED);
+                        // if we moved, send event for moving
+                        Messenger.Broadcast(GameEvent.MOVED);
+                    }
                 }
             }
         } else {
@@ -39,8 +59,10 @@ public class ObjectController : MonoBehaviour
 
 
     private void Update() {
-        if(item != null)
+        if(item != null){
+            UpdateNeightbourTiles();
             distance = item.position - transform.position;
+        }
         if(Vector3.Distance(transform.parent.position, movePoint.position) <= 0.005f)
         {
             if (Input.GetKeyDown(KeyCode.Z)) {
@@ -52,14 +74,22 @@ public class ObjectController : MonoBehaviour
                     // orientar objeto para el lado que toca
                     float rotation = 0f;
 
-                    if(Mathf.Abs(distance.x - 1.0f) <= 0.05f)
+                    if(Mathf.Abs(distance.x - 1.0f) <= 0.05f) {
                         rotation = -90f; 
-                    else if(Mathf.Abs(distance.x + 1.0f) <= 0.05f)
+                        neightIndex = 2;
+                    }
+                    else if(Mathf.Abs(distance.x + 1.0f) <= 0.05f) {
                         rotation = 90f;
-                    else if(Mathf.Abs(distance.y -1.0f) <= 0.05f)
+                        neightIndex = 6;
+                    }
+                    else if(Mathf.Abs(distance.y -1.0f) <= 0.05f){
                         rotation = 0f; 
-                    else
+                        neightIndex = 0;
+                    }
+                    else {
                         rotation = 180f;
+                        neightIndex = 4;
+                    }
 
                     rotation = rotation - item.eulerAngles.z;
                     item.Rotate(new Vector3(0f, 0f, rotation), Space.Self);
@@ -94,5 +124,35 @@ public class ObjectController : MonoBehaviour
         if(other.CompareTag("Item")) {
             pickUpItem = false;
         }
+    }
+    void UpdateNeightbourTiles() {
+        neightTiles[0] = transform.position + new Vector3(0, 1, 0);
+        neightTiles[1] = transform.position + new Vector3(1, 1, 0);
+        neightTiles[2] = transform.position + new Vector3(1, 0, 0);
+        neightTiles[3] = transform.position + new Vector3(1, -1, 0);
+        neightTiles[4] = transform.position + new Vector3(0, -1, 0);
+        neightTiles[5] = transform.position + new Vector3(-1, -1, 0);
+        neightTiles[6] = transform.position + new Vector3(-1, 0, 0);
+        neightTiles[7] = transform.position + new Vector3(-1, 1, 0);
+    }
+
+    private bool canRotate(int orientation) {
+        //Debug.Log(item.position);
+        bool res = true;
+        Vector3 offsetOne, offsetTwo;
+        offsetOne = neightTiles[(neightIndex + 8 + orientation)%8];
+        offsetTwo = neightTiles[(neightIndex + 8 + 2*orientation)%8];
+
+        if(mapGridInfo.isTileWalkable(offsetOne.x, offsetOne.y) || mapGridInfo.isTileEnemy(offsetOne.x, offsetOne.y)) {
+            if(mapGridInfo.isTileWalkable(offsetTwo.x, offsetTwo.y) || mapGridInfo.isTileEnemy(offsetTwo.x, offsetTwo.y)) {
+                res = true;
+            } else {
+                res = false;
+            }
+        } else {
+            res = false;
+        }
+        Debug.Log(res);
+        return res;    
     }
 }

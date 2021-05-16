@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
         if(rotationObject.transform.childCount > 0) {
             obj = rotationObject.transform.GetChild(0);
 
-            Debug.Log(obj.position);
+//            Debug.Log(obj.position);
             return  obj.position;
         }
         return Vector3.zero;
