@@ -81,6 +81,7 @@ public class ObjectController : MonoBehaviour
                     pickUpItem = false;
                     // orientar objeto para el lado que toca
                     float rotation = 0f;
+                    bool canPickUp = true;
 
                     if(Mathf.Abs(distance.x - 1.0f) <= 0.05f) {
                         rotation = -90f; 
@@ -94,19 +95,23 @@ public class ObjectController : MonoBehaviour
                         rotation = 0f; 
                         neightIndex = 0;
                     }
-                    else {
+                    else if(Mathf.Abs(distance.y + 1.0f) <= 0.05f) {
                         rotation = 180f;
                         neightIndex = 4;
+                    } else {
+                        canPickUp = false; 
                     }
 
-                    rotation = rotation - item.eulerAngles.z;
-                    item.Rotate(new Vector3(0f, 0f, rotation), Space.Self);
-                    item.parent = transform;
+                    if(canPickUp) {
+                        rotation = rotation - item.eulerAngles.z;
+                        item.Rotate(new Vector3(0f, 0f, rotation), Space.Self);
+                        item.parent = transform;
 
-                    // para la primera demo, spawn enemigo cuando se coja el arma
-                    if(!firstObject ){
-                        firstObject = true;
-                        Messenger.Broadcast("SPAWN_ENEMY");
+                        // para la primera demo, spawn enemigo cuando se coja el arma
+                        if(!firstObject ){
+                            firstObject = true;
+                            Messenger.Broadcast("SPAWN_ENEMY");
+                        }
                     }
                 }
             }
@@ -128,11 +133,18 @@ public class ObjectController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.CompareTag("Item")) {
+            pickUpItem = true;
+        }
+    }
     private void OnTriggerExit2D(Collider2D other) {
         if(other.CompareTag("Item")) {
             pickUpItem = false;
+            Debug.Log("CANT PICK UP");
         }
     }
+
     void UpdateNeightbourTiles() {
         neightTiles[0] = transform.position + new Vector3(0, 1, 0);
         neightTiles[1] = transform.position + new Vector3(1, 1, 0);
