@@ -25,7 +25,8 @@ public class Enemy : MonoBehaviour
     private bool attackTurn = false;
     private bool knockback = false;
     public int hp = 1;
-
+    private bool stuned = false;
+    int stunCounter = 0;
 
     private List<GridInfo> currentPath;
 
@@ -76,59 +77,68 @@ public class Enemy : MonoBehaviour
 
     private void OnMyTurn()
     {
-        turn = true;
-        attackTurn = true;
+        if(!stuned) {
+            turn = true;
+            attackTurn = true;
 
-        player = GameObject.FindWithTag("Player");
-        CalcInRange();
-        if (inRange)
-        {
-            Attack();
-        }
-        else
-        {
-            //newPoint = movePoint.position + siguienteMovimiento;
-            //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
-
-            Vector3 currentPos = transform.position;
-            Vector3 playerPos = player.transform.position;
-
-            if(Vector3.Distance(currentPos, playerPos) < 10f)
+            player = GameObject.FindWithTag("Player");
+            CalcInRange();
+            if (inRange )
             {
-                if (mapGridInfo.isTargetVisible(currentPos, playerPos)) {
-                    List<GridInfo> generatedPath = mapGridInfo.GetValidPath(currentPos, playerPos);
-                    if (generatedPath != null) {
-                        currentPath = generatedPath;
+                Attack();
+            }
+            else
+            {
+                //newPoint = movePoint.position + siguienteMovimiento;
+                //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
 
+                Vector3 currentPos = transform.position;
+                Vector3 playerPos = player.transform.position;
+
+                if(Vector3.Distance(currentPos, playerPos) < 10f)
+                {
+                    if (mapGridInfo.isTargetVisible(currentPos, playerPos)) {
+                        List<GridInfo> generatedPath = mapGridInfo.GetValidPath(currentPos, playerPos);
+                        if (generatedPath != null) {
+                            currentPath = generatedPath;
+
+                        }
+                    }
+                }
+
+                if (currentPath != null && currentPath.Count > 0) {
+
+                    GridInfo nextTile = currentPath[0];
+                    currentPath.RemoveAt(0);
+
+                    siguienteMovimiento = mapGridInfo.getGridInfoGlobalTransform(nextTile);
+
+                    newPoint = siguienteMovimiento;
+
+                    if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
+                    {
+                        mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
+                        mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
+                        movePoint.position = newPoint;
+                        mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
+                        mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
+                    }
+
+                    if (animator.GetInteger("WalkState") == 0)
+                    {
+                        animator.SetInteger("WalkState", 1);
                     }
                 }
             }
-
-            if (currentPath != null && currentPath.Count > 0) {
-
-                GridInfo nextTile = currentPath[0];
-                currentPath.RemoveAt(0);
-
-                siguienteMovimiento = mapGridInfo.getGridInfoGlobalTransform(nextTile);
-
-                newPoint = siguienteMovimiento;
-
-                if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
-                {
-                    mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
-                    mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, false);
-                    movePoint.position = newPoint;
-                    mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
-                    mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
-                }
-
-                if (animator.GetInteger("WalkState") == 0)
-                {
-                    animator.SetInteger("WalkState", 1);
-                }
+        }
+        else  
+        {
+            stunCounter++;
+            if(stunCounter >= 2) {
+                stunCounter = 0;
+                stuned = false;
+                animator.SetBool("Stuned", false);
             }
-
-            
         }
     }
     void Update()
@@ -243,6 +253,8 @@ public class Enemy : MonoBehaviour
         {
             if (other.gameObject.transform.parent != null)
             {
+                stuned = true;
+                animator.SetBool("Stuned", true);
                 hp--;
                 KnockBack(other.gameObject.transform.position);
                 animator.SetBool("Damage", true);
@@ -271,7 +283,6 @@ public class Enemy : MonoBehaviour
         mapGridInfo.setTileEnemyState(transform.position.x, transform.position.y, false);
 
         Vector3 distance = transform.position - weaponPosition;
-
         if (distance.x > 0.1f)
         {
             distance.x = -1f;
@@ -290,7 +301,7 @@ public class Enemy : MonoBehaviour
         }
 
         //Debug.Log(distance);
-        Vector3 newPoint = movePoint.position - distance;
+        Vector3 newPoint = transform.position - distance;
         if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y))
         {
             mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
@@ -298,6 +309,6 @@ public class Enemy : MonoBehaviour
             movePoint.position = newPoint;
             mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, false);
             mapGridInfo.setTileEnemyState(movePoint.position.x, movePoint.position.y, true);
-        }
+        } 
     }
 }
