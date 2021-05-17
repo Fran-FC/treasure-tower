@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.6
+  m_FalloffIntensity: 0.75
   m_Color: {r: 0.9528302, g: 0.6583756, b: 0.33708617, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0.085
