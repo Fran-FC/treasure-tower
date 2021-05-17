@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705310384137312064}
   - component: {fileID: 2621432883696272921}
+  - component: {fileID: 6192568631961627286}
   m_Layer: 0
   m_Name: pot3
   m_TagString: Untagged
@@ -82,3 +83,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6192568631961627286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485278325133768466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.27356783, y: -0.52264327, z: 0}
+  - {x: 0.2573942, y: -0.52264315, z: 0}
+  - {x: 0.5097043, y: -0.2504608, z: 0}
+  - {x: 0.36229137, y: 0.02426061, z: 0}
+  - {x: -0.35905668, y: 0.027495295, z: 0}
+  - {x: -0.48382634, y: -0.26016483, z: 0}
+  m_ShapePathHash: 713171333
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -158996
