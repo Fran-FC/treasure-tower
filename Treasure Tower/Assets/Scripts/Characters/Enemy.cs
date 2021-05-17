@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
         else  
         {
             stunCounter++;
-            if(stunCounter >= 2) {
+            if(stunCounter >= 1) {
                 stunCounter = 0;
                 stuned = false;
                 animator.SetBool("Stuned", false);

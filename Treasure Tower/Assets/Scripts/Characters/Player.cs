@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameController gameController;
     public GameObject rotationObject;
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        gameController = (GameController)FindObjectOfType(typeof(GameController));
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         movePoint.parent = null;        
         animator = GetComponent<Animator>();
@@ -203,8 +205,9 @@ public class Player : MonoBehaviour
                 lifeState = CharLifeStates.nacked;
                 break;
             default:
+                gameController.GameOver();
                 lifeState = CharLifeStates.dead;
-                transform.gameObject.SetActive(false);
+                //transform.gameObject.SetActive(false);
                 break;
         }
 
