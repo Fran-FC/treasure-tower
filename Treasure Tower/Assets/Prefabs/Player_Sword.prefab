@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2281077745814626847}
   - component: {fileID: 2281077745814626846}
   - component: {fileID: 2281077745814626842}
+  - component: {fileID: 4098019973433642046}
   m_Layer: 0
   m_Name: Player_Sword
   m_TagString: Player
@@ -200,6 +201,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4098019973433642046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2281077745814626837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.21702766, y: -0.54623544, z: 0}
+  - {x: 0.24147618, y: -0.5527392, z: 0}
+  - {x: 0.39812732, y: -0.48558414, z: 0}
+  - {x: 0.27929914, y: -0.3745396, z: 0}
+  - {x: -0.23171592, y: -0.37610674, z: 0}
+  - {x: -0.35150468, y: -0.46607238, z: 0}
+  m_ShapePathHash: 515893673
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -123194
 --- !u!1 &2281077746131138878
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +528,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.9528302, g: 0.6583756, b: 0.33708617, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.21
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
