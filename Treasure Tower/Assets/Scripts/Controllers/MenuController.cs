@@ -13,6 +13,5 @@ public class MenuController : MonoBehaviour
     public void Salir()
     {
         Application.Quit();
-        Debug.Log("Cerrando aplicación");
     }
 }
