@@ -37,6 +37,11 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1213039723259361673, guid: 9a72b2ba4b25edd4b9c695aafb8a14e9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3596932cc621ee743ab3d7219e2a4179, type: 2}
     - target: {fileID: 1213039723259361675, guid: 9a72b2ba4b25edd4b9c695aafb8a14e9,
         type: 3}
       propertyPath: m_LocalPosition.x
