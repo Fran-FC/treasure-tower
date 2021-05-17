@@ -33,7 +33,6 @@ public class ObjectController : MonoBehaviour
                     // check if it is possible to rotate
                     if(canRotate(-1)) {
                         neightIndex = (8 + neightIndex - 2) % 8;
-                        //Debug.Log(neightIndex);
                         rotationOrientation = 1f;
                         rotationDest = (360 + rotationDest + 90f) % 360f;
 
@@ -152,7 +151,6 @@ public class ObjectController : MonoBehaviour
         } else {
             res = false;
         }
-        Debug.Log(res);
         return res;    
     }
 }
