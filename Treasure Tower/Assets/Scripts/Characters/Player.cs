@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameController gameController;
+    [SerializeField]
+    private GameObject playerDead;
+    GameController gameController;
     public GameObject rotationObject;
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -206,8 +208,10 @@ public class Player : MonoBehaviour
                 break;
             default:
                 gameController.GameOver();
-                lifeState = CharLifeStates.dead;
-                //transform.gameObject.SetActive(false);
+                Instantiate(playerDead, transform.position, Quaternion.identity);
+                
+                //lifeState = CharLifeStates.dead;
+                transform.gameObject.SetActive(false);
                 break;
         }
 

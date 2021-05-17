@@ -323,6 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b800bfe3b1115c34484a71d6ff3b04eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDead: {fileID: 6180789844841782909, guid: aed267be89077274cba65dfce4cb5bb7,
+    type: 3}
   rotationObject: {fileID: 7327101891002810649}
   movePoint: {fileID: 7327101890006539240}
   moveSpeed: 5
