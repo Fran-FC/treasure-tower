@@ -158,16 +158,6 @@ public class Player : MonoBehaviour
         return Vector3.zero;
     }
 
-    private Vector3 ObjectOffsetPosition(Vector3 obj, Vector3 move) {
-        Debug.Log("Object position: "+ obj);
-        Debug.Log("Movement orientation: "+move);
-        float dist = Vector3.Distance(obj, move);
-        if(dist < 0.05f){
-            Debug.Log("Offset applied");
-            return move;
-        }
-        return Vector3.zero;
-    }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Armor")){
             if(lifes < 3){
@@ -180,6 +170,7 @@ public class Player : MonoBehaviour
             Damage();
         }
     } 
+
     public void Damage(){
         lifes--;
         UpdateLifeState();
@@ -214,9 +205,7 @@ public class Player : MonoBehaviour
                 transform.gameObject.SetActive(false);
                 break;
         }
-
-
         animator.SetInteger("HealthState", (int)lifeState);
-
     }
+
 }

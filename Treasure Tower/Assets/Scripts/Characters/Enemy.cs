@@ -7,65 +7,39 @@ public class Enemy : MonoBehaviour
 {
     public Transform movePoint;
     public Transform warn;
-    public float thrust = 3f;
-    float knockTime = 0.2f;
     private TileMapGenerator mapGridInfo;
     private Vector3 siguienteMovimiento;
     private Vector3 newPoint;
-    public bool armor;
     public float moveSpeed;
-    public Vector2 orientation = new Vector2(0, 0);
-    private bool inRange = false;
+
     [SerializeField]
     private GameObject player;
+
+    // flags
     private bool isFlippedX = false;
+    private bool isFlippedY = false;
     private bool walking = false;
     private bool turn = true;
-    private bool isFlippedY = false;
     private bool attackTurn = false;
     private bool knockback = false;
-    public int hp = 1;
     private bool stuned = false;
+
+    public int hp = 1;
     int stunCounter = 0;
 
     private List<GridInfo> currentPath;
 
-    // Start is called before the first frame update
-    /*enum WhichEnemy
-    {
-        skeleton = 0,
-        ghost = 1,
-        troll = 2,
-        fire = 3
-    }*/
-    int whichEnemy;
     SpriteRenderer spriteRenderer;
     Animator animator;
 
-    Rigidbody2D rigidbody;
-
     void Start()
     {
-        //player = GetComponent<Player>();
-        rigidbody = GetComponent<Rigidbody2D>();
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        whichEnemy = new System.Random().Next(0, 3);
-        InitSprite();
-
         movePoint.parent = null;
     }
 
-    void InitSprite()
-    {
-        switch (whichEnemy)
-        {
-            case 0:
-
-                break;
-        }
-    }
     private void Awake()
     {
         Messenger.AddListener(GameEvent.MOVE_ORDER, OnMyTurn);
@@ -73,6 +47,7 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
+        Destroy(movePoint);
     }
 
     private void OnMyTurn()
@@ -80,17 +55,11 @@ public class Enemy : MonoBehaviour
         if(!stuned) {
             turn = true;
             attackTurn = true;
-
             player = GameObject.FindWithTag("Player");
-            CalcInRange();
-            if (inRange )
-            {
+
+            if(CalcInRange()) {
                 Attack();
-            }
-            else
-            {
-                //newPoint = movePoint.position + siguienteMovimiento;
-                //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
+            } else {
 
                 Vector3 currentPos = transform.position;
                 Vector3 playerPos = player.transform.position;
@@ -149,16 +118,8 @@ public class Enemy : MonoBehaviour
             if (!walking && turn)
             {
                 turn = false;
-                //siguienteMovimiento = CalcPath();
-
-                //siguienteMovimiento = mapGridInfo.DrawPath(transform.position, player.transform.position);
-
-                //Debug.Log(siguienteMovimiento);
-
                 newPoint = movePoint.position;
-
                 warn.position = siguienteMovimiento;
-                //ShowWarnTile(true);
             }
             Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
             float nuevaX = Math.Sign(aux.x) * -1;
@@ -196,8 +157,9 @@ public class Enemy : MonoBehaviour
         warn.position = show ? nothidden : hidden;
     }
 
-    private void CalcInRange()
+    private bool CalcInRange()
     {
+        bool inRange;
         if (player.transform.position.x == this.transform.position.x && (player.transform.position.y == this.transform.position.y - 1 || player.transform.position.y == this.transform.position.y + 1))
         {
             inRange = true;
@@ -211,7 +173,9 @@ public class Enemy : MonoBehaviour
         {
             inRange = false;
         }
+        return inRange;
     }
+
     private void Attack()
     {
         //TD
@@ -221,31 +185,6 @@ public class Enemy : MonoBehaviour
             player.GetComponent<Player>().Damage();
         }
     }
-    private Vector3 CalcPath()
-    {
-        Vector3 aux = new Vector3(this.transform.position.x - player.transform.position.x, this.transform.position.y - player.transform.position.y, 0);
-        float nuevaX = Math.Sign(aux.x) * -1;
-        if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
-        spriteRenderer.flipX = isFlippedX;
-
-        if (mapGridInfo.isTileWalkable(this.transform.position.x + nuevaX, 0) && Mathf.Abs(aux.x) > Mathf.Abs(aux.y))
-        {
-            orientation.x = nuevaX;
-            return new Vector3(nuevaX, 0f, 0f);
-        }
-
-        float nuevaY = Math.Sign(aux.y) * -1;
-        return new Vector3(0f, nuevaY, 0f);
-
-    }
-
-    private bool isPlayerNearby()
-    {
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-        //Debug.Log(distance);
-        return distance <= 10.0f;
-    }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
