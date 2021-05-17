@@ -15,6 +15,7 @@ public class ObjectController : MonoBehaviour
     Vector3[] neightTiles;
     int neightIndex = 2;
 
+    bool rotating = false;
 
     void Start() {
         mapGridInfo = (TileMapGenerator)FindObjectOfType(typeof(TileMapGenerator));
@@ -28,26 +29,34 @@ public class ObjectController : MonoBehaviour
         if (Mathf.Abs(diff) <= 0.05f)
         {
             if(item!= null && item.parent == transform){
+                if(rotating) {
+                    rotating = false;
+                    Messenger.Broadcast(GameEvent.REACHED);
+                }
                 if(Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse0))
                 {
                     // check if it is possible to rotate
                     if(canRotate(-1)) {
+                        // if we moved, send event for moving
+                        Messenger.Broadcast(GameEvent.MOVED);
+
                         neightIndex = (8 + neightIndex - 2) % 8;
                         rotationOrientation = 1f;
                         rotationDest = (360 + rotationDest + 90f) % 360f;
 
-                        // if we moved, send event for moving
-                        Messenger.Broadcast(GameEvent.MOVED);
+                        rotating = true;
                     } 
                 } else if(Input.GetKey(KeyCode.E)|| Input.GetKey(KeyCode.Mouse1) )
                 {
                     if(canRotate(1)) {
+                        // if we moved, send event for moving
+                        Messenger.Broadcast(GameEvent.MOVED);
+
                         neightIndex = (8 + neightIndex + 2) % 8;
                         rotationOrientation = -1f;
                         rotationDest = (360 + rotationDest - 90f) % 360f;
 
-                        // if we moved, send event for moving
-                        Messenger.Broadcast(GameEvent.MOVED);
+                        rotating = true;
                     }
                 }
             }

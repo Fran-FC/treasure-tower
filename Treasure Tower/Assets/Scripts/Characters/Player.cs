@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5.0f;
     float orientation = 1f;
     bool flip = false;
+    bool walking = false;
     enum CharWalkStates { idle = 0, walk = 1 }
     CharWalkStates prevWalkState;
 
@@ -69,6 +70,11 @@ public class Player : MonoBehaviour
     
         if(Vector3.Distance(transform.position, movePoint.position) <= 0.005f)
         {
+            if(walking) {
+                walking = false;
+                Messenger.Broadcast("REACHED");
+            }
+
             Vector3 cachePos = movePoint.position;
             Vector3 oldPos = cachePos;
             Vector3 objectOffset;
@@ -96,7 +102,7 @@ public class Player : MonoBehaviour
                         movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                         mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
                         mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
-
+                        walking = true;
                         if (movement.x > 0f)
                         {
                             prevWalkState = CharWalkStates.walk;
@@ -130,6 +136,7 @@ public class Player : MonoBehaviour
                         mapGridInfo.setTileWalkableState(oldPos.x, oldPos.y, true);
                         mapGridInfo.setTileWalkableState(cachePos.x, cachePos.y, false);
                         prevWalkState = CharWalkStates.walk;
+                        walking = true;
 
                         // if we moved, send event for moving
                         Messenger.Broadcast(GameEvent.MOVED);

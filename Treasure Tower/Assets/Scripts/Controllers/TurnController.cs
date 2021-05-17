@@ -6,16 +6,19 @@ public class TurnController : MonoBehaviour
 {
     float countdown;
     public float timeToMove;
-    public bool playerMoved = false;
+    public bool playerMoved = false,
+                playerReachedDestination = false;
 
     private void Start() {
         countdown = timeToMove;
     }
     private void Awake() {
         Messenger.AddListener(GameEvent.MOVED, OnMoved);
+        Messenger.AddListener(GameEvent.REACHED, OnReached);
     }
     private void OnDestroy() {
         Messenger.RemoveListener(GameEvent.MOVED, OnMoved);
+        Messenger.RemoveListener(GameEvent.REACHED, OnReached);
     }
     void Update()
     {
@@ -30,7 +33,13 @@ public class TurnController : MonoBehaviour
             // send signal to all enemies to move
             SignalMove();
         }
-        
+        if(playerReachedDestination) {
+            playerReachedDestination = false;
+            SignalCalcNextMove();
+        }
+    }
+
+    private void SignalCalcNextMove() {
     }
 
     private void SignalMove()
@@ -41,5 +50,9 @@ public class TurnController : MonoBehaviour
     private void OnMoved()
     {
         playerMoved = true;
+    }
+
+    private void OnReached(){
+        playerReachedDestination = true;
     }
 }

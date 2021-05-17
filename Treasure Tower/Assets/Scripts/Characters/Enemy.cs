@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     public Transform movePoint;
     public Transform warn;
     private TileMapGenerator mapGridInfo;
-    private Vector3 siguienteMovimiento;
     private Vector3 newPoint;
     public float moveSpeed;
 
@@ -42,48 +41,51 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        Messenger.AddListener(GameEvent.REACHED, OnMyNextTurn);
         Messenger.AddListener(GameEvent.MOVE_ORDER, OnMyTurn);
     }
     private void OnDestroy()
     {
+        Messenger.RemoveListener(GameEvent.REACHED, OnMyNextTurn);
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
-        Destroy(movePoint);
     }
 
+    private void OnMyNextTurn() {
+            // calculate path and paint next move
+        if(!stuned) {
+            Vector3 currentPos = transform.position;
+            Vector3 playerPos = player.transform.position;
+
+            if(Vector3.Distance(currentPos, playerPos) < 10f)
+            {
+                if (mapGridInfo.isTargetVisible(currentPos, playerPos)) {
+                    List<GridInfo> generatedPath = mapGridInfo.GetValidPath(currentPos, playerPos);
+                    if (generatedPath != null) {
+                        currentPath = generatedPath;
+
+                    }
+                }
+            }
+            if (currentPath != null && currentPath.Count > 0) {
+
+                GridInfo nextTile = currentPath[0];
+                currentPath.RemoveAt(0);
+
+                newPoint = mapGridInfo.getGridInfoGlobalTransform(nextTile);
+                warn.position = newPoint;
+            }
+        }
+    }
     private void OnMyTurn()
     {
         if(!stuned) {
-            turn = true;
             attackTurn = true;
             player = GameObject.FindWithTag("Player");
 
             if(CalcInRange()) {
                 Attack();
             } else {
-
-                Vector3 currentPos = transform.position;
-                Vector3 playerPos = player.transform.position;
-
-                if(Vector3.Distance(currentPos, playerPos) < 10f)
-                {
-                    if (mapGridInfo.isTargetVisible(currentPos, playerPos)) {
-                        List<GridInfo> generatedPath = mapGridInfo.GetValidPath(currentPos, playerPos);
-                        if (generatedPath != null) {
-                            currentPath = generatedPath;
-
-                        }
-                    }
-                }
-
                 if (currentPath != null && currentPath.Count > 0) {
-
-                    GridInfo nextTile = currentPath[0];
-                    currentPath.RemoveAt(0);
-
-                    siguienteMovimiento = mapGridInfo.getGridInfoGlobalTransform(nextTile);
-
-                    newPoint = siguienteMovimiento;
-
                     if (mapGridInfo.isTileWalkable(newPoint.x, newPoint.y) && hp > 0)
                     {
                         mapGridInfo.setTileWalkableState(movePoint.position.x, movePoint.position.y, true);
@@ -114,13 +116,6 @@ public class Enemy : MonoBehaviour
     {
         if (!knockback)
         {
-            // calculate path and paint next move
-            if (!walking && turn)
-            {
-                turn = false;
-                newPoint = movePoint.position;
-                warn.position = siguienteMovimiento;
-            }
             Vector3 aux = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0);
             float nuevaX = Math.Sign(aux.x) * -1;
             if (nuevaX > 0) isFlippedX = false; else isFlippedX = true;
