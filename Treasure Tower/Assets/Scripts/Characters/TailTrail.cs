@@ -7,6 +7,7 @@ public class TailTrail : MonoBehaviour
     public GameObject trail;
     static List<GameObject> trailPool;
     public int poolSize;
+    public Vector3 positionCache; 
 
     private void Awake() {
         Messenger.AddListener(GameEvent.MOVE_ORDER, OnMyTurn);
@@ -19,14 +20,23 @@ public class TailTrail : MonoBehaviour
             trailObject.SetActive(false);
             trailPool.Add(trailObject);
         }
+        positionCache = transform.position;
     }
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.MOVE_ORDER, OnMyTurn);
     }
 
-    private void OnMyTurn (){
-        SpawnTrail(transform.position);
+    private void OnMyTurn(){
+        float distance = Vector3.Distance(positionCache, transform.position);
+        if(distance > 0.5f){
+            SpawnTrail(transform.position);
+            positionCache = transform.position;
+            Debug.Log("TRAILING");
+        } else {
+            Debug.Log("NOT TRAILING");
+        }
+
     }
     
     private void SpawnTrail(Vector3 location) {

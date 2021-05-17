@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6974716568381254700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7886912374822791813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5886858e7431e6140b24d7080ebfd745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trail: {fileID: 1577614368171841309, guid: 9229d58038faca242bf09c11b44eabef, type: 3}
+  poolSize: 25
+  positionCache: {x: 0, y: 0, z: 0}
 --- !u!1 &8241319787201682995
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,20 +87,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &-6974716568381254700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7886912374822791813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5886858e7431e6140b24d7080ebfd745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trail: {fileID: 1577614368171841309, guid: 9229d58038faca242bf09c11b44eabef, type: 3}
-  poolSize: 10
 --- !u!1001 &9054034288810267411
 PrefabInstance:
   m_ObjectHideFlags: 0
