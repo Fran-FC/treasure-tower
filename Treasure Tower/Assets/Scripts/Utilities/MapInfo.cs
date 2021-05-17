@@ -100,10 +100,6 @@ public class MapInfo
                 else if (color.Equals(Color.green)) { 
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, false, -1, false, true, Random.Range(0, 5));
                 }
-                else if (color.Equals(new Color(1, 1, 0)))
-                {
-                    map[i, j] = new GridInfo(i, j, (int)TileTypes.FLOOR, false, false, -1, false, true, 5);
-                }
                 else
                 {
                     map[i, j] = new GridInfo(i, j, (int)TileTypes.WALL, false);
