@@ -291,7 +291,7 @@ public class TileMapGenerator : MonoBehaviour
         }
         else
         {
-            Debug.Log("Path is null...");
+//            Debug.Log("Path is null...");
         }
 
         return path;
