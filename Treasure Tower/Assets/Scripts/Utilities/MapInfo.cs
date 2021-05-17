@@ -64,8 +64,8 @@ public class MapInfo
         map[3, map.GetLength(1) - 2].hasEnemy = true;
         map[3, map.GetLength(1) - 2].enemyType = 0;
 
-        //map[map.GetLength(0) - 3, map.GetLength(1) - 2].hasEnemy = true;
-        //map[map.GetLength(0) - 3, map.GetLength(1) - 2].enemyType = 0;
+        map[map.GetLength(0) - 3, map.GetLength(1) - 2].hasEnemy = true;
+        map[map.GetLength(0) - 3, map.GetLength(1) - 2].enemyType = 0;
     }
 
 
